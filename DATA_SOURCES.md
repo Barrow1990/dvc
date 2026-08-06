@@ -13,7 +13,7 @@ a number in the dashboard.
 | `points-charts/saratoga-springs.json` | Full 2026 points chart | 2026-08-06 | Annually - Disney publishes a new points chart PDF each year |
 | `points-charts/animal-kingdom-villas.json` | 2026 points chart (ranges across view categories) | 2026-08-06 | Same as above |
 | `school-holidays/moorland-school.json` | Term dates through Summer 2027 | 2026-08-06 | Christmas 2026/2027 dates weren't published yet at fetch time - check back on the school's site |
-| `fx-rate.json` | USD→GBP: latest, 7-day low/high/avg, 30-day low/high/avg | 2026-08-06 | Rates move daily - the app has quick-select buttons for latest/7d-avg/30d-avg/30d-low/30d-high so you're not stuck manually retyping it |
+| `fx-rate.json` | USD→GBP: latest, real 7-day/30-day low/high/avg | 2026-08-06 | Run `npm run update-fx` any time - fetches real ECB historical rates via the Frankfurter API (free, no key) and rewrites this file. The app has quick-select buttons for latest/7d-avg/30d-avg/30d-low/30d-high. |
 
 ## Coverage gaps (v1 scope)
 
