@@ -1,0 +1,12 @@
+{
+  "source": "https://www.dvcresalemarket.com/blog/dvc-resale-average-sales-prices-for-april-2026/, https://www.fidelityrealestate.com/blog/july-2026-average-dvc-resale-price-per-point/, https://dvcsales.com/dvc-market-report",
+  "fetchedAt": "2026-08-06",
+  "note": "USD per point, resale (secondhand) market. Blended average across all resorts was $126/point in April 2026, ~$125/point asking average in June 2026. Ranges below are per-resort-tier midpoints from multiple trackers, not a single exact quote - treat as a planning estimate, get a real quote from a resale broker before deciding.",
+  "blendedAveragePerPoint": 126,
+  "rangesPerPointByResortTier": {
+    "Grand Floridian / Polynesian (premium)": { "low": 150, "high": 180 },
+    "Riviera": { "low": 140, "high": 165 },
+    "Saratoga Springs / Old Key West (value)": { "low": 95, "high": 115 }
+  },
+  "overallMarketRange": { "low": 50, "high": 250 }
+}

@@ -1,3 +1,9 @@
 .DS_Store
 .env
 *.log
+
+# Node / Vite build
+node_modules/
+dist/
+dist-ssr/
+*.local

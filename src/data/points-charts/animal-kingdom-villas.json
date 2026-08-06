@@ -1,0 +1,58 @@
+{
+  "resort": "Animal Kingdom Villas",
+  "tier": "deluxe",
+  "source": "https://dvctripplanner.com/resort/disneys-animal-kingdom-villas",
+  "fetchedAt": "2026-08-06",
+  "note": "Points required per night, shown as [low, high] ranges spanning this resort's view categories (Value/Standard/Savanna/Club Concierge) rather than broken out per view - the source page collapsed these into ranges. Use the low end for a standard/value view, high end for savanna/club view. 3-Bedroom here is a lower point cost than 2-Bedroom because it's a different villa configuration (fewer of them, different building) - not a typo, matches the source.",
+  "seasons": [
+    {
+      "name": "September",
+      "dateRanges": ["Sep 1-30"],
+      "pointsPerNight": {
+        "studio": [8, 20], "oneBedroom": [11, 24], "twoBedroom": [62, 148], "threeBedroom": [19, 41]
+      }
+    },
+    {
+      "name": "January & Early May",
+      "dateRanges": ["Jan 1-31", "May 1-14"],
+      "pointsPerNight": {
+        "studio": [9, 23], "oneBedroom": [12, 26], "twoBedroom": [69, 167], "threeBedroom": [21, 43]
+      }
+    },
+    {
+      "name": "Late May & Early December",
+      "dateRanges": ["May 15-Jun 10", "Dec 1-23"],
+      "pointsPerNight": {
+        "studio": [9, 23], "oneBedroom": [13, 26], "twoBedroom": [71, 167], "threeBedroom": [23, 45]
+      }
+    },
+    {
+      "name": "February & Summer",
+      "dateRanges": ["Feb 1-15", "Jun 11-Aug 31"],
+      "pointsPerNight": {
+        "studio": [10, 25], "oneBedroom": [13, 27], "twoBedroom": [76, 179], "threeBedroom": [23, 47]
+      }
+    },
+    {
+      "name": "Fall",
+      "dateRanges": ["Oct 1-Nov 23", "Nov 27-30"],
+      "pointsPerNight": {
+        "studio": [11, 26], "oneBedroom": [14, 29], "twoBedroom": [83, 188], "threeBedroom": [25, 50]
+      }
+    },
+    {
+      "name": "Spring Break / Thanksgiving",
+      "dateRanges": ["Feb 16-Mar 20", "Mar 29-Apr 30", "Nov 24-26"],
+      "pointsPerNight": {
+        "studio": [13, 27], "oneBedroom": [16, 31], "twoBedroom": [97, 197], "threeBedroom": [26, 54]
+      }
+    },
+    {
+      "name": "Highest Demand",
+      "dateRanges": ["Mar 21-28", "Dec 24-31"],
+      "pointsPerNight": {
+        "studio": [17, 37], "oneBedroom": [19, 40], "twoBedroom": [123, 264], "threeBedroom": [34, 67]
+      }
+    }
+  ]
+}

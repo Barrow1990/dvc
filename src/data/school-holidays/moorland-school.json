@@ -1,0 +1,30 @@
+{
+  "source": "https://moorlandschool.co.uk/our-school/key-information/",
+  "fetchedAt": "2026-08-06",
+  "note": "Independent school term dates - not a state-school LA calendar. Christmas 2026/2027 holiday dates aren't published yet on the school's site (only term start/end times shown below, in local UK time). Holiday windows are the gaps between terms.",
+  "terms": [
+    { "name": "Spring Term 2026", "start": "2026-01-05", "end": "2026-03-27" },
+    { "name": "Summer Term 2026", "start": "2026-04-20", "end": "2026-07-03" },
+    { "name": "Autumn Term 2026", "start": "2026-09-07", "end": "2026-12-11" },
+    { "name": "Spring Term 2027", "start": "2027-01-05", "end": "2027-03-25" },
+    { "name": "Summer Term 2027", "start": "2027-04-19", "end": "2027-07-09" }
+  ],
+  "halfTerms": [
+    { "name": "Feb half-term 2026", "start": "2026-02-13", "end": "2026-02-23" },
+    { "name": "May half-term 2026", "start": "2026-05-22", "end": "2026-06-01" },
+    { "name": "Oct half-term 2026", "start": "2026-10-16", "end": "2026-11-02" },
+    { "name": "Feb half-term 2027", "start": "2027-02-12", "end": "2027-02-22" },
+    { "name": "May half-term 2027", "start": "2027-05-28", "end": "2027-06-07" }
+  ],
+  "holidayWindows": [
+    { "name": "Feb half-term 2026", "start": "2026-02-13", "end": "2026-02-23", "type": "half-term" },
+    { "name": "Easter holidays 2026", "start": "2026-03-27", "end": "2026-04-20", "type": "main" },
+    { "name": "May half-term 2026", "start": "2026-05-22", "end": "2026-06-01", "type": "half-term" },
+    { "name": "Summer holidays 2026", "start": "2026-07-03", "end": "2026-09-07", "type": "main" },
+    { "name": "Oct half-term 2026", "start": "2026-10-16", "end": "2026-11-02", "type": "half-term" },
+    { "name": "Christmas holidays 2026", "start": "2026-12-11", "end": "2027-01-05", "type": "main" },
+    { "name": "Feb half-term 2027", "start": "2027-02-12", "end": "2027-02-22", "type": "half-term" },
+    { "name": "Easter holidays 2027", "start": "2027-03-25", "end": "2027-04-19", "type": "main" },
+    { "name": "May half-term 2027", "start": "2027-05-28", "end": "2027-06-07", "type": "half-term" }
+  ]
+}

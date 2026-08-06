@@ -1,0 +1,13 @@
+{
+  "source": "https://www.dvcresalemarket.com/blog/2026-disney-vacation-club-annual-dues/, https://dvcfan.com/news/2026-disney-vacation-club-annual-dues/",
+  "fetchedAt": "2026-08-06",
+  "note": "2026 billing year, USD per point. Blended increase of 6.38% across all resorts vs 2025. WDW average $9.61/point; Beach resorts average $12.90/point; California resorts average $10.03/point.",
+  "duesPerPoint": {
+    "Grand Floridian Villas": 8.31,
+    "Bay Lake Tower": 8.74,
+    "Saratoga Springs": 7.42,
+    "Animal Kingdom Villas": 10.16,
+    "Grand Californian Villas": 9.52,
+    "Vero Beach": 14.89
+  }
+}

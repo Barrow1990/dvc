@@ -1,0 +1,19 @@
+{
+  "source": "https://wise.com/us/currency-converter/usd-to-gbp-rate/history (7-day stats), https://www.x-rates.com/average/?from=USD&to=GBP&amount=1&year=2026 (monthly averages), individual daily rates from search results for late July/early Aug 2026",
+  "fetchedAt": "2026-08-06",
+  "note": "Mid-market rate, fluctuates constantly. 30-day figures are compiled from monthly averages (July 2026 full month + August 2026 partial) plus individual daily data points, not a single clean rolling-30-day dataset - free public sources didn't expose one directly. Treat 30-day min/max as approximate.",
+  "usdToGbp": 0.7425,
+  "last7Days": {
+    "latest": 0.7433,
+    "low": 0.7412,
+    "high": 0.7447,
+    "average": 0.7427
+  },
+  "last30Days": {
+    "latest": 0.7433,
+    "low": 0.7412,
+    "high": 0.748,
+    "average": 0.745,
+    "note": "Low/high from daily data points seen for the period (e.g. 2026-07-29: 0.74798, 2026-08-02: 0.74104); average blends July's full-month average (0.7476) with August's partial-month average (0.7426)."
+  }
+}

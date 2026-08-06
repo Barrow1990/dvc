@@ -1,0 +1,13 @@
+{
+  "source": "https://www.thetraveler.org/disney-vacation-club-cost-explained-2026-buyers-guide/, https://dvcfan.com/purchasing-dvc/2026-dvc-direct-price-increase/",
+  "fetchedAt": "2026-08-06",
+  "note": "USD per point, buying new/direct from Disney. Price increase effective 2026-02-10. General band $215-275/point depending on resort; specific post-increase examples below. Current promotions (e.g. discounts on 200+ point purchases) change independently of list price and aren't reflected here.",
+  "generalRange": { "low": 215, "high": 275 },
+  "perPointByResort": {
+    "Polynesian Villas & Bungalows": 243,
+    "Riviera Resort": 243,
+    "Cabins at Fort Wilderness": 243,
+    "Aulani": 243,
+    "Villas at Disneyland Hotel": 248
+  }
+}

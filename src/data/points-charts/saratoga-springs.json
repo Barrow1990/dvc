@@ -1,0 +1,59 @@
+{
+  "resort": "Saratoga Springs",
+  "tier": "value",
+  "source": "https://dvctripplanner.com/resort/disneys-saratoga-springs-resort-and-spa",
+  "fetchedAt": "2026-08-06",
+  "note": "Points required per night. Standard/Preferred are view categories, not room quality. Real 2026 chart.",
+  "seasons": [
+    {
+      "name": "Low Season",
+      "dateRanges": ["Sep 1-30"],
+      "pointsPerNight": {
+        "studio": { "standard": 9, "preferred": 11 },
+        "oneBedroom": { "standard": 14, "preferred": 16 },
+        "twoBedroom": { "standard": 27, "preferred": 35 },
+        "grandVilla": { "standard": 63, "preferred": 74 }
+      }
+    },
+    {
+      "name": "Value Season",
+      "dateRanges": ["Jan 1-31", "May 1-14"],
+      "pointsPerNight": {
+        "studio": { "standard": 12, "preferred": 13 },
+        "oneBedroom": { "standard": 15, "preferred": 17 },
+        "twoBedroom": { "standard": 32, "preferred": 38 },
+        "grandVilla": { "standard": 68, "preferred": 76 }
+      }
+    },
+    {
+      "name": "Regular Season",
+      "dateRanges": ["May 15-Jun 10", "Dec 1-23"],
+      "pointsPerNight": {
+        "studio": { "standard": 13, "preferred": 15 },
+        "oneBedroom": { "standard": 15, "preferred": 18 },
+        "twoBedroom": { "standard": 35, "preferred": 39 },
+        "grandVilla": { "standard": 74, "preferred": 82 }
+      }
+    },
+    {
+      "name": "Peak Season",
+      "dateRanges": ["Feb 1-15", "Jun 11-Aug 31", "Oct 1-Nov 23", "Nov 27-30"],
+      "pointsPerNight": {
+        "studio": { "standard": [14, 15], "preferred": [15, 16] },
+        "oneBedroom": { "standard": [16, 17], "preferred": 19 },
+        "twoBedroom": { "standard": [36, 37], "preferred": [41, 46] },
+        "grandVilla": { "standard": [77, 88], "preferred": [87, 98] }
+      }
+    },
+    {
+      "name": "Highest Demand",
+      "dateRanges": ["Mar 21-28", "Dec 24-31"],
+      "pointsPerNight": {
+        "studio": { "standard": 21, "preferred": 23 },
+        "oneBedroom": { "standard": 25, "preferred": 28 },
+        "twoBedroom": { "standard": 56, "preferred": 67 },
+        "grandVilla": { "standard": 113, "preferred": 131 }
+      }
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "source": "https://www.floridafamilyholiday.com/florida-holiday-cost-2026-real-prices-for-uk-families/, https://thehouseoftravel.co.uk/blog-posts/how-much-does-a-disney-world-package-cost/, https://www.chartertravel.co.uk/holidays/florida/walt-disney-world/",
+  "fetchedAt": "2026-08-06",
+  "note": "GBP, UK tour-operator package (flights + hotel + park tickets bundled). Per-person ranges are for 14 nights; family-of-4 totals are a concrete published example (2 adults + 2 kids aged 3-9). Prices depend heavily on travel dates - Easter/summer school holidays are highest demand and highest price.",
+  "perPersonGbp14Nights": {
+    "Value resort": { "low": 1799, "high": 2100 },
+    "Moderate resort": { "low": 2150, "high": 2300 },
+    "Deluxe resort": { "low": 2400, "high": 2700 }
+  },
+  "familyOf4Example14Nights": {
+    "description": "2 adults + 2 kids (3-9), 14 nights, hotel + tickets",
+    "allStarSportsLowGbp": 4023,
+    "animalKingdomLodgeHighGbp": 7963
+  },
+  "weeklyBudgetRuleOfThumbGbp": { "low": 6000, "high": 8000, "nights": 7 }
+}
