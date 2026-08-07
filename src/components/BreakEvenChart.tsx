@@ -9,6 +9,7 @@ import {
   YAxis,
 } from "recharts";
 import {
+  calculateBlueCardDiscount,
   calculateBreakEven,
   calculateDvcTripCost,
   calculateFlightsCost,
@@ -17,7 +18,7 @@ import {
   findBreakEvenYear,
   usdToGbp,
 } from "../lib/calculations";
-import { pointsCharts, packageHolidays, flights, parkTickets } from "../lib/data";
+import { pointsCharts, packageHolidays, flights, parkTickets, directVsResalePerks } from "../lib/data";
 import type { AssumptionsState } from "./Assumptions";
 
 interface Props {
@@ -62,11 +63,23 @@ export function BreakEvenChart({ state, years }: Props) {
     state.children,
   );
 
+  const blueCardEligible =
+    state.purchaseType === "direct" && dvc.totalPoints >= directVsResalePerks.blueCardMinimumPoints;
+  const blueCardDiscountGbp = calculateBlueCardDiscount(
+    blueCardEligible,
+    state.estimatedDiningAndMerchSpendGbp,
+    directVsResalePerks.blueCardPerks.diningAndMerchandiseDiscountPercent.low +
+      (directVsResalePerks.blueCardPerks.diningAndMerchandiseDiscountPercent.high -
+        directVsResalePerks.blueCardPerks.diningAndMerchandiseDiscountPercent.low) /
+        2,
+  );
+
   // One-time purchase cost for enough points to cover this trip every year,
   // converted to GBP so the whole chart is in one currency.
   const purchaseCostGbp = usdToGbp(dvc.totalPoints * state.purchasePricePerPoint, state.usdToGbpRate);
   const annualDuesGbp = usdToGbp(dvc.duesCost, state.usdToGbpRate);
-  const annualRecurringGbp = annualDuesGbp + flightsCost.totalGbp + ticketsCost.totalGbp;
+  const annualRecurringGbp =
+    annualDuesGbp + flightsCost.totalGbp + ticketsCost.totalGbp - blueCardDiscountGbp;
 
   const points = calculateBreakEven(purchaseCostGbp, annualRecurringGbp, packageAnnualGbp, years);
   const breakEvenYear = findBreakEvenYear(points);
@@ -76,8 +89,8 @@ export function BreakEvenChart({ state, years }: Props) {
       <h2>Break-even over time</h2>
       <p className="muted">
         Cumulative cost of buying DVC (one-time purchase, plus dues + flights + tickets paid
-        every year) vs. always booking the package holiday instead, assuming this exact trip
-        every year, all converted to GBP.{" "}
+        every year, less the Blue Card discount if buying direct) vs. always booking the
+        package holiday instead, assuming this exact trip every year, all converted to GBP.{" "}
         {breakEvenYear
           ? `Break-even at year ${breakEvenYear}.`
           : `DVC doesn't break even within ${years} years at these assumptions.`}

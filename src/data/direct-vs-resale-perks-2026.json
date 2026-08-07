@@ -1,0 +1,22 @@
+{
+  "source": "https://www.dvcstore.com/blog/disney-vacation-club-resale-restrictions/, https://www.fidelityrealestate.com/blog/dvc-blue-membership-card-benefits-require-150-point-purchase/, https://dvcsales.com/resale-restrictions, https://www.disneytouristblog.com/best-disney-vacation-club-member-perks/",
+  "fetchedAt": "2026-08-07",
+  "note": "Only buying direct from Disney (with at least 150 points) gets the 'Blue Card' (Membership Extras). Resale buyers get a 'White Card' - no Membership Extras at all, regardless of contract size. The one exception: resale contracts bought before 2016-04-04 kept Blue Card status, but that's not relevant to a new purchase now.",
+  "blueCardRequiresDirectPurchase": true,
+  "blueCardMinimumPoints": 150,
+  "blueCardPerks": {
+    "diningAndMerchandiseDiscountPercent": { "low": 10, "high": 20 },
+    "other": [
+      "Annual Pass discounts (percentage varies, not published as a fixed rate)",
+      "Villa room discounts on cash reservations",
+      "Pool hopping to other DVC resorts",
+      "DVC member lounges at parks/resorts",
+      "Members-only events (e.g. Moonlight Magic) and Disney Cruise Line booking access with points"
+    ]
+  },
+  "resaleRestrictedResorts": {
+    "note": "Two-way restriction, in effect since 2019-01-19. Resale points bought at ANY of these three can only be used at that same resort - and resale points bought at any of the original 14 legacy resorts (Saratoga Springs and Animal Kingdom Villas, both modeled in this app, are legacy resorts and NOT on this list) cannot be used to book these three.",
+    "resorts": ["Riviera Resort", "Cabins at Fort Wilderness", "Villas at Disneyland Hotel"]
+  },
+  "resaleDiscountVsDirectPercent": { "low": 40, "high": 60 }
+}

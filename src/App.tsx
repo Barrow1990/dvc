@@ -15,11 +15,13 @@ const defaultState: AssumptionsState = {
   adults: 2,
   children: 2,
   duesPerPoint: dues.duesPerPoint["Saratoga Springs"],
+  purchaseType: "direct",
   purchasePricePerPoint: directPrices.generalRange.low,
   amortizationYears: 15,
   packageTier: "Moderate resort",
   usdToGbpRate: fxRate.usdToGbp,
   demandTier: "peak",
+  estimatedDiningAndMerchSpendGbp: 300,
 };
 
 function App() {

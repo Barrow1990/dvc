@@ -100,6 +100,19 @@ export function calculateTicketsCost(
   return { totalGbp: adultPriceByTier[tier] * adults + childPriceByTier[tier] * children };
 }
 
+/** Blue Card (Membership Extras) dining/merchandise discount - only real if
+ * bought direct with >= 150 points; resale buyers get nothing here
+ * regardless of contract size. Editable estimated spend since actual value
+ * depends entirely on how much a family spends on dining/shopping. */
+export function calculateBlueCardDiscount(
+  isEligible: boolean,
+  estimatedDiningAndMerchSpendGbp: number,
+  discountPercent: number,
+): number {
+  if (!isEligible) return 0;
+  return estimatedDiningAndMerchSpendGbp * (discountPercent / 100);
+}
+
 /** Combines DVC accommodation (converted to GBP) with flights and tickets
  * (already GBP) into one comparable total against a package holiday. */
 export function calculateFullDvcTripCostGbp(
@@ -107,13 +120,16 @@ export function calculateFullDvcTripCostGbp(
   flightsCost: FlightsCost,
   ticketsCost: TicketsCost,
   usdToGbpRate: number,
+  blueCardDiscountGbp: number,
 ): FullDvcTripCostGbp {
   const accommodationGbp = usdToGbp(dvcTripCost.totalCost, usdToGbpRate);
   return {
     accommodationGbp,
     flightsGbp: flightsCost.totalGbp,
     ticketsGbp: ticketsCost.totalGbp,
-    totalGbp: accommodationGbp + flightsCost.totalGbp + ticketsCost.totalGbp,
+    blueCardDiscountGbp,
+    totalGbp:
+      accommodationGbp + flightsCost.totalGbp + ticketsCost.totalGbp - blueCardDiscountGbp,
   };
 }
 

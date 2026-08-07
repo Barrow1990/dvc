@@ -1,11 +1,12 @@
 import {
+  calculateBlueCardDiscount,
   calculateDvcTripCost,
   calculateFlightsCost,
   calculateFullDvcTripCostGbp,
   calculatePackageTripCost,
   calculateTicketsCost,
 } from "../lib/calculations";
-import { pointsCharts, packageHolidays, flights, parkTickets } from "../lib/data";
+import { pointsCharts, packageHolidays, flights, parkTickets, directVsResalePerks } from "../lib/data";
 import type { AssumptionsState } from "./Assumptions";
 
 interface Props {
@@ -42,11 +43,28 @@ export function TripComparison({ state }: Props) {
       state.adults,
       state.children,
     );
+    const blueCardEligible =
+      state.purchaseType === "direct" && dvc.totalPoints >= directVsResalePerks.blueCardMinimumPoints;
+    const blueCardDiscountGbp = calculateBlueCardDiscount(
+      blueCardEligible,
+      state.estimatedDiningAndMerchSpendGbp,
+      directVsResalePerks.blueCardPerks.diningAndMerchandiseDiscountPercent.low +
+        (directVsResalePerks.blueCardPerks.diningAndMerchandiseDiscountPercent.high -
+          directVsResalePerks.blueCardPerks.diningAndMerchandiseDiscountPercent.low) /
+          2,
+    );
     full = {
       dvc,
       flightsCost,
       ticketsCost,
-      totals: calculateFullDvcTripCostGbp(dvc, flightsCost, ticketsCost, state.usdToGbpRate),
+      blueCardEligible,
+      totals: calculateFullDvcTripCostGbp(
+        dvc,
+        flightsCost,
+        ticketsCost,
+        state.usdToGbpRate,
+        blueCardDiscountGbp,
+      ),
     };
   } catch (e) {
     dvcError = e instanceof Error ? e.message : String(e);
@@ -66,7 +84,9 @@ export function TripComparison({ state }: Props) {
         Both columns are "everything included" - accommodation, flights, and park tickets.
         Package figures scale the sourced 14-night per-person range linearly to your trip
         length; ticket prices are Disney's UK-exclusive 14-Day Magic Ticket, buyable
-        standalone so they apply to DVC ownership too, not just packages.
+        standalone so they apply to DVC ownership too, not just packages. Direct purchases
+        get a Blue Card dining/merchandise discount applied below - resale doesn't (see
+        Assumptions above).
       </p>
       {dvcError ? (
         <p className="error">{dvcError}</p>
@@ -84,7 +104,7 @@ export function TripComparison({ state }: Props) {
               <tr>
                 <td>Accommodation</td>
                 <td>{gbp(full.totals.accommodationGbp)}</td>
-                <td rowSpan={4} className="muted">
+                <td rowSpan={5} className="muted">
                   Bundled - not broken out per component
                 </td>
               </tr>
@@ -95,6 +115,10 @@ export function TripComparison({ state }: Props) {
               <tr>
                 <td>Park tickets</td>
                 <td>{gbp(full.ticketsCost.totalGbp)}</td>
+              </tr>
+              <tr>
+                <td>Blue Card discount{full.blueCardEligible ? "" : " (not eligible)"}</td>
+                <td>−{gbp(full.totals.blueCardDiscountGbp)}</td>
               </tr>
               <tr>
                 <td>

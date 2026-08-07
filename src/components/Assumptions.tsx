@@ -1,5 +1,5 @@
-import type { DemandTier, RoomType, ViewType } from "../lib/types";
-import { pointsCharts, packageHolidays, fxRate } from "../lib/data";
+import type { DemandTier, PurchaseType, RoomType, ViewType } from "../lib/types";
+import { pointsCharts, packageHolidays, fxRate, directPrices, resalePrices, directVsResalePerks } from "../lib/data";
 import { ROOM_TYPE_LABELS } from "../lib/calculations";
 
 export interface AssumptionsState {
@@ -11,11 +11,13 @@ export interface AssumptionsState {
   adults: number;
   children: number;
   duesPerPoint: number;
+  purchaseType: PurchaseType;
   purchasePricePerPoint: number;
   amortizationYears: number;
   packageTier: keyof typeof packageHolidays.perPersonGbp14Nights;
   usdToGbpRate: number;
   demandTier: DemandTier;
+  estimatedDiningAndMerchSpendGbp: number;
 }
 
 interface Props {
@@ -23,11 +25,34 @@ interface Props {
   onChange: (next: AssumptionsState) => void;
 }
 
+/** Resale prices are only tracked per resort-tier, not every individual
+ * resort - falls back to the blended market average when a specific
+ * resort (e.g. Animal Kingdom Villas) isn't in that breakdown. */
+function resalePriceMidpointForResort(resort: string): number {
+  const tierKey = Object.keys(resalePrices.rangesPerPointByResortTier).find((k) =>
+    k.includes(resort),
+  ) as keyof typeof resalePrices.rangesPerPointByResortTier | undefined;
+  if (tierKey) {
+    const r = resalePrices.rangesPerPointByResortTier[tierKey];
+    return (r.low + r.high) / 2;
+  }
+  return resalePrices.blendedAveragePerPoint;
+}
+
+function directPriceForResort(resort: string): number {
+  const specific = (directPrices.perPointByResort as Record<string, number>)[resort];
+  if (specific !== undefined) return specific;
+  return (directPrices.generalRange.low + directPrices.generalRange.high) / 2;
+}
+
 export function Assumptions({ state, onChange }: Props) {
   const chart = pointsCharts[state.resortIndex];
   const availableRoomTypes = Object.keys(
     chart.seasons[0].pointsPerNight,
   ) as RoomType[];
+  const isRestrictedResort = (
+    directVsResalePerks.resaleRestrictedResorts.resorts as string[]
+  ).includes(chart.resort);
 
   function set<K extends keyof AssumptionsState>(key: K, value: AssumptionsState[K]) {
     onChange({ ...state, [key]: value });
@@ -135,6 +160,17 @@ export function Assumptions({ state, onChange }: Props) {
         </label>
 
         <label>
+          Purchase type
+          <select
+            value={state.purchaseType}
+            onChange={(e) => set("purchaseType", e.target.value as PurchaseType)}
+          >
+            <option value="direct">Direct from Disney</option>
+            <option value="resale">Resale (secondhand)</option>
+          </select>
+        </label>
+
+        <label>
           Purchase price $/point
           <input
             type="number"
@@ -166,6 +202,16 @@ export function Assumptions({ state, onChange }: Props) {
         </label>
 
         <label>
+          Est. dining/merch spend per trip (£)
+          <input
+            type="number"
+            min={0}
+            value={state.estimatedDiningAndMerchSpendGbp}
+            onChange={(e) => set("estimatedDiningAndMerchSpendGbp", Number(e.target.value))}
+          />
+        </label>
+
+        <label>
           USD → GBP rate
           <input
             type="number"
@@ -174,6 +220,34 @@ export function Assumptions({ state, onChange }: Props) {
             onChange={(e) => set("usdToGbpRate", Number(e.target.value))}
           />
         </label>
+      </div>
+
+      <div className="purchase-type-info">
+        <p className="muted">
+          {state.purchaseType === "direct" ? (
+            <>
+              Direct purchases (150+ points) get the Blue Card - {directVsResalePerks.blueCardPerks.diningAndMerchandiseDiscountPercent.low}–
+              {directVsResalePerks.blueCardPerks.diningAndMerchandiseDiscountPercent.high}% off dining/merchandise (applied below using your
+              estimated spend), plus Annual Pass discounts, DVC lounges, pool hopping, and members-only events - not quantified here.
+            </>
+          ) : (
+            <>
+              Resale buyers get no Blue Card / Membership Extras at all, regardless of contract size - typically{" "}
+              {directVsResalePerks.resaleDiscountVsDirectPercent.low}–{directVsResalePerks.resaleDiscountVsDirectPercent.high}% cheaper per
+              point than direct, though.
+              {isRestrictedResort &&
+                ` ${chart.resort} is a resale-restricted resort - resale points bought here can ONLY be used here, and resale points from other (legacy) resorts can't book here at all.`}
+            </>
+          )}
+        </p>
+        <div className="fx-buttons">
+          <button type="button" onClick={() => set("purchasePricePerPoint", directPriceForResort(chart.resort))}>
+            Use typical direct price
+          </button>
+          <button type="button" onClick={() => set("purchasePricePerPoint", resalePriceMidpointForResort(chart.resort))}>
+            Use typical resale price
+          </button>
+        </div>
       </div>
 
       <div className="fx-rates">

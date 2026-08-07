@@ -31,6 +31,7 @@ export interface PointsChart {
 export type RoomType = "studio" | "oneBedroom" | "twoBedroom" | "threeBedroom" | "grandVilla";
 export type ViewType = "standard" | "preferred";
 export type DemandTier = "low" | "regular" | "peak";
+export type PurchaseType = "direct" | "resale";
 
 export interface FlightsCostInputs {
   tier: DemandTier;
@@ -74,6 +75,7 @@ export interface FullDvcTripCostGbp {
   accommodationGbp: number;
   flightsGbp: number;
   ticketsGbp: number;
+  blueCardDiscountGbp: number; // negative-facing - subtracted from the total, 0 if not eligible
   totalGbp: number;
 }
 
