@@ -14,6 +14,19 @@ a number in the dashboard.
 | `points-charts/animal-kingdom-villas.json` | 2026 points chart (ranges across view categories) | 2026-08-06 | Same as above |
 | `school-holidays/moorland-school.json` | Term dates through Summer 2027 | 2026-08-06 | Christmas 2026/2027 dates weren't published yet at fetch time - check back on the school's site |
 | `fx-rate.json` | USD→GBP: latest, real 7-day/30-day low/high/avg | 2026-08-06 | Run `npm run update-fx` any time - fetches real ECB historical rates via the Frankfurter API (free, no key) and rewrites this file. The app has quick-select buttons for latest/7d-avg/30d-avg/30d-low/30d-high. |
+| `flights-2026.json` | UK→Orlando return flights, family-of-4 GBP, by demand tier | 2026-08-07 | Each time you're comparing a real trip - flight prices are highly date-specific, these are planning-level ranges |
+| `park-tickets-2026.json` | UK-exclusive 14-Day Magic Ticket, GBP per person (adult/child), by demand tier | 2026-08-07 | Annually alongside Disney's own price updates |
+
+## Why DVC needs flights + tickets added on top
+
+DVC ownership only ever pays for accommodation - a UK package holiday
+bundles flights + hotel + the UK-exclusive 14-Day Magic Ticket together
+(confirmed 2026-08-07 against real UK operator package pages), which is
+why packages look "cheap" for what they include. Comparing DVC's points
+cost against a package price without adding flights and tickets to the
+DVC side wasn't a fair comparison - fixed by adding `flights-2026.json`
+and `park-tickets-2026.json`, both included in the DVC total everywhere
+in the app now.
 
 ## Coverage gaps (v1 scope)
 
@@ -26,6 +39,14 @@ a number in the dashboard.
 - Animal Kingdom Villas' points are ranges (spanning its view categories)
   rather than exact per-view numbers - the source page didn't break them
   out further.
+- The "demand tier" (low/regular/peak) driving flights + ticket prices is
+  a separate selector from the DVC points chart's own season - they're
+  priced on genuinely different calendars (airline/Disney-UK-ticket demand
+  vs. DVC's own points calendar) and not assumed to line up on the same
+  dates. Pick both to roughly match the real dates you're planning around.
+- Flights scale linearly from the sourced family-of-4 baseline by party
+  size - a simplification, real fares aren't per-seat-linear (checked
+  baggage, seat selection, etc. don't scale that cleanly either).
 - No real DVC contract exists yet - all "assumptions" (points owned,
   purchase price paid) are user-editable placeholders in the UI, not
   real committed numbers.

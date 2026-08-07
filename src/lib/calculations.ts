@@ -1,11 +1,15 @@
 import type {
   BreakEvenPoint,
+  DemandTier,
   DvcTripCost,
   DvcTripInputs,
+  FlightsCost,
+  FullDvcTripCostGbp,
   PackageTripCost,
   PackageTripInputs,
   PointsValue,
   RoomType,
+  TicketsCost,
   ViewType,
 } from "./types";
 
@@ -72,12 +76,55 @@ export function calculatePackageTripCost(inputs: PackageTripInputs): PackageTrip
 }
 
 /**
- * Cumulative cost curves for buying DVC (one-time purchase + annual dues)
- * vs. always booking the package holiday instead, year by year.
+ * DVC ownership only covers accommodation - flights and park tickets are
+ * real costs on top of it that a package holiday already bundles in.
+ * Scales the sourced family-of-4 baseline linearly by actual party size.
+ */
+export function calculateFlightsCost(
+  familyOf4RangeGbp: { low: number; high: number },
+  partySize: number,
+): FlightsCost {
+  const midpoint = (familyOf4RangeGbp.low + familyOf4RangeGbp.high) / 2;
+  return { totalGbp: (midpoint / 4) * partySize };
+}
+
+/** UK-exclusive Magic Ticket, priced separately for adults and children,
+ * since a DVC owner still has to buy park admission on top of the room. */
+export function calculateTicketsCost(
+  adultPriceByTier: Record<DemandTier, number>,
+  childPriceByTier: Record<DemandTier, number>,
+  tier: DemandTier,
+  adults: number,
+  children: number,
+): TicketsCost {
+  return { totalGbp: adultPriceByTier[tier] * adults + childPriceByTier[tier] * children };
+}
+
+/** Combines DVC accommodation (converted to GBP) with flights and tickets
+ * (already GBP) into one comparable total against a package holiday. */
+export function calculateFullDvcTripCostGbp(
+  dvcTripCost: DvcTripCost,
+  flightsCost: FlightsCost,
+  ticketsCost: TicketsCost,
+  usdToGbpRate: number,
+): FullDvcTripCostGbp {
+  const accommodationGbp = usdToGbp(dvcTripCost.totalCost, usdToGbpRate);
+  return {
+    accommodationGbp,
+    flightsGbp: flightsCost.totalGbp,
+    ticketsGbp: ticketsCost.totalGbp,
+    totalGbp: accommodationGbp + flightsCost.totalGbp + ticketsCost.totalGbp,
+  };
+}
+
+/**
+ * Cumulative cost curves for buying DVC (one-time purchase, plus dues +
+ * flights + tickets paid every year this trip is taken) vs. always booking
+ * the package holiday instead, year by year.
  */
 export function calculateBreakEven(
   dvcPurchaseCost: number,
-  dvcAnnualDues: number,
+  dvcAnnualRecurringCost: number,
   packageAnnualCost: number,
   years: number,
 ): BreakEvenPoint[] {
@@ -85,7 +132,7 @@ export function calculateBreakEven(
   for (let year = 1; year <= years; year++) {
     points.push({
       year,
-      cumulativeDvcCost: dvcPurchaseCost + dvcAnnualDues * year,
+      cumulativeDvcCost: dvcPurchaseCost + dvcAnnualRecurringCost * year,
       cumulativePackageCost: packageAnnualCost * year,
     });
   }

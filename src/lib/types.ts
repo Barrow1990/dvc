@@ -30,6 +30,18 @@ export interface PointsChart {
 
 export type RoomType = "studio" | "oneBedroom" | "twoBedroom" | "threeBedroom" | "grandVilla";
 export type ViewType = "standard" | "preferred";
+export type DemandTier = "low" | "regular" | "peak";
+
+export interface FlightsCostInputs {
+  tier: DemandTier;
+  partySize: number;
+}
+
+export interface TicketsCostInputs {
+  tier: DemandTier;
+  adults: number;
+  children: number;
+}
 
 export interface DvcTripInputs {
   chart: PointsChart;
@@ -45,9 +57,24 @@ export interface DvcTripInputs {
 export interface DvcTripCost {
   pointsPerNight: number; // midpoint used when the source is a range
   totalPoints: number;
-  duesCost: number;
-  amortizedPurchaseCost: number;
-  totalCost: number;
+  duesCost: number; // USD
+  amortizedPurchaseCost: number; // USD
+  totalCost: number; // USD accommodation only - duesCost + amortizedPurchaseCost
+}
+
+export interface FlightsCost {
+  totalGbp: number; // scaled from the family-of-4 baseline by party size
+}
+
+export interface TicketsCost {
+  totalGbp: number; // adults + children priced separately
+}
+
+export interface FullDvcTripCostGbp {
+  accommodationGbp: number;
+  flightsGbp: number;
+  ticketsGbp: number;
+  totalGbp: number;
 }
 
 export interface PackageTripInputs {

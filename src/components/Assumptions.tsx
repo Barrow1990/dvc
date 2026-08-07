@@ -1,4 +1,4 @@
-import type { RoomType, ViewType } from "../lib/types";
+import type { DemandTier, RoomType, ViewType } from "../lib/types";
 import { pointsCharts, packageHolidays, fxRate } from "../lib/data";
 import { ROOM_TYPE_LABELS } from "../lib/calculations";
 
@@ -8,12 +8,14 @@ export interface AssumptionsState {
   roomType: RoomType;
   view: ViewType;
   nights: number;
-  partySize: number;
+  adults: number;
+  children: number;
   duesPerPoint: number;
   purchasePricePerPoint: number;
   amortizationYears: number;
   packageTier: keyof typeof packageHolidays.perPersonGbp14Nights;
   usdToGbpRate: number;
+  demandTier: DemandTier;
 }
 
 interface Props {
@@ -54,7 +56,7 @@ export function Assumptions({ state, onChange }: Props) {
         </label>
 
         <label>
-          Season
+          Season (accommodation points)
           <select value={state.seasonName} onChange={(e) => set("seasonName", e.target.value)}>
             {chart.seasons.map((s) => (
               <option key={s.name} value={s.name}>
@@ -94,13 +96,32 @@ export function Assumptions({ state, onChange }: Props) {
         </label>
 
         <label>
-          Party size
+          Adults
           <input
             type="number"
             min={1}
-            value={state.partySize}
-            onChange={(e) => set("partySize", Number(e.target.value))}
+            value={state.adults}
+            onChange={(e) => set("adults", Number(e.target.value))}
           />
+        </label>
+
+        <label>
+          Children (3-9)
+          <input
+            type="number"
+            min={0}
+            value={state.children}
+            onChange={(e) => set("children", Number(e.target.value))}
+          />
+        </label>
+
+        <label>
+          Demand tier (flights + tickets)
+          <select value={state.demandTier} onChange={(e) => set("demandTier", e.target.value as DemandTier)}>
+            <option value="low">Low (e.g. Feb half-term, Easter booked early)</option>
+            <option value="regular">Regular (e.g. October half-term)</option>
+            <option value="peak">Peak (summer, Christmas)</option>
+          </select>
         </label>
 
         <label>
@@ -159,11 +180,10 @@ export function Assumptions({ state, onChange }: Props) {
         <p className="muted">
           Latest {fxRate.usdToGbp} · 7-day: {fxRate.last7Days.low}–{fxRate.last7Days.high} (avg{" "}
           {fxRate.last7Days.average}) · 30-day: {fxRate.last30Days.low}–{fxRate.last30Days.high}{" "}
-          (avg {fxRate.last30Days.average}, approximate - see{" "}
+          (avg {fxRate.last30Days.average}) · real ECB historical data, see{" "}
           <a href="https://github.com/Barrow1990/dvc/blob/main/DATA_SOURCES.md">
             DATA_SOURCES.md
           </a>
-          )
         </p>
         <div className="fx-buttons">
           <button type="button" onClick={() => set("usdToGbpRate", fxRate.usdToGbp)}>

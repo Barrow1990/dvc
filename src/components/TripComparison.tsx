@@ -1,5 +1,11 @@
-import { calculateDvcTripCost, calculatePackageTripCost, usdToGbp } from "../lib/calculations";
-import { pointsCharts, packageHolidays } from "../lib/data";
+import {
+  calculateDvcTripCost,
+  calculateFlightsCost,
+  calculateFullDvcTripCostGbp,
+  calculatePackageTripCost,
+  calculateTicketsCost,
+} from "../lib/calculations";
+import { pointsCharts, packageHolidays, flights, parkTickets } from "../lib/data";
 import type { AssumptionsState } from "./Assumptions";
 
 interface Props {
@@ -7,15 +13,15 @@ interface Props {
 }
 
 const gbp = (n: number) => `£${n.toLocaleString(undefined, { maximumFractionDigits: 0 })}`;
-const usd = (n: number) => `$${n.toLocaleString(undefined, { maximumFractionDigits: 0 })}`;
 
 export function TripComparison({ state }: Props) {
   const chart = pointsCharts[state.resortIndex];
+  const partySize = state.adults + state.children;
 
-  let dvc;
   let dvcError: string | null = null;
+  let full;
   try {
-    dvc = calculateDvcTripCost({
+    const dvc = calculateDvcTripCost({
       chart,
       seasonName: state.seasonName,
       roomType: state.roomType,
@@ -25,13 +31,30 @@ export function TripComparison({ state }: Props) {
       purchasePricePerPoint: state.purchasePricePerPoint,
       amortizationYears: state.amortizationYears,
     });
+    const flightsCost = calculateFlightsCost(
+      flights.familyOf4ReturnGbp[state.demandTier],
+      partySize,
+    );
+    const ticketsCost = calculateTicketsCost(
+      parkTickets.fourteenDayMagicTicketGbp.adult,
+      parkTickets.fourteenDayMagicTicketGbp.child,
+      state.demandTier,
+      state.adults,
+      state.children,
+    );
+    full = {
+      dvc,
+      flightsCost,
+      ticketsCost,
+      totals: calculateFullDvcTripCostGbp(dvc, flightsCost, ticketsCost, state.usdToGbpRate),
+    };
   } catch (e) {
     dvcError = e instanceof Error ? e.message : String(e);
   }
 
   const pkg = calculatePackageTripCost({
     perPersonRange: packageHolidays.perPersonGbp14Nights[state.packageTier],
-    partySize: state.partySize,
+    partySize,
     packageNights: 14,
     tripNights: state.nights,
   });
@@ -40,13 +63,15 @@ export function TripComparison({ state }: Props) {
     <section>
       <h2>Trip comparison</h2>
       <p className="muted">
+        Both columns are "everything included" - accommodation, flights, and park tickets.
         Package figures scale the sourced 14-night per-person range linearly to your trip
-        length - a simplification, real package pricing isn't perfectly linear per night.
+        length; ticket prices are Disney's UK-exclusive 14-Day Magic Ticket, buyable
+        standalone so they apply to DVC ownership too, not just packages.
       </p>
       {dvcError ? (
         <p className="error">{dvcError}</p>
       ) : (
-        dvc && (
+        full && (
           <table>
             <thead>
               <tr>
@@ -57,39 +82,31 @@ export function TripComparison({ state }: Props) {
             </thead>
             <tbody>
               <tr>
-                <td>Points needed</td>
-                <td>
-                  {dvc.totalPoints.toFixed(0)} pts ({dvc.pointsPerNight.toFixed(1)}/night ×{" "}
-                  {state.nights} nights)
+                <td>Accommodation</td>
+                <td>{gbp(full.totals.accommodationGbp)}</td>
+                <td rowSpan={4} className="muted">
+                  Bundled - not broken out per component
                 </td>
-                <td>—</td>
               </tr>
               <tr>
-                <td>Annual dues cost</td>
-                <td>
-                  {usd(dvc.duesCost)} ({gbp(usdToGbp(dvc.duesCost, state.usdToGbpRate))})
-                </td>
-                <td>—</td>
+                <td>Flights</td>
+                <td>{gbp(full.flightsCost.totalGbp)}</td>
               </tr>
               <tr>
-                <td>Amortized purchase cost</td>
-                <td>
-                  {usd(dvc.amortizedPurchaseCost)} (
-                  {gbp(usdToGbp(dvc.amortizedPurchaseCost, state.usdToGbpRate))}) over{" "}
-                  {state.amortizationYears} yrs
-                </td>
-                <td>—</td>
+                <td>Park tickets</td>
+                <td>{gbp(full.ticketsCost.totalGbp)}</td>
               </tr>
               <tr>
                 <td>
                   <strong>Total, this trip</strong>
                 </td>
                 <td>
-                  <strong>
-                    {usd(dvc.totalCost)} (
-                    {gbp(usdToGbp(dvc.totalCost, state.usdToGbpRate))})
-                  </strong>
+                  <strong>{gbp(full.totals.totalGbp)}</strong>
                 </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
                 <td>
                   <strong>
                     {gbp(pkg.totalLowGbp)}–{gbp(pkg.totalHighGbp)}

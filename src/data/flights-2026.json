@@ -1,0 +1,10 @@
+{
+  "source": "https://www.floridafamilyholiday.com/florida-holiday-cost-2026-real-prices-for-uk-families/, https://www.mousetowand.com/how-much-does-an-orlando-holiday-cost-from-the-uk-2026-budget-guide/",
+  "fetchedAt": "2026-08-07",
+  "note": "UK to Orlando (MCO) return economy, GBP, for a family of 4 (2 adults + 2 children) - scale linearly by party size if different, noted in the UI. These matter here specifically because school holidays force travel into the highest-demand windows - there's no 'cheap May' option for this family. Includes UK Air Passenger Duty (~£408 for 2 adults return from April 2026, under-16s exempt in economy).",
+  "familyOf4ReturnGbp": {
+    "low": { "low": 1800, "high": 2400, "example": "Feb half-term / Easter, booked well ahead" },
+    "regular": { "low": 2400, "high": 3200, "example": "October half-term" },
+    "peak": { "low": 3000, "high": 4500, "example": "Peak summer (Jul-Aug), also assume similar for Christmas" }
+  }
+}

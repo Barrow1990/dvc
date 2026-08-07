@@ -12,12 +12,14 @@ const defaultState: AssumptionsState = {
   roomType: "studio",
   view: "standard",
   nights: 7,
-  partySize: 4,
+  adults: 2,
+  children: 2,
   duesPerPoint: dues.duesPerPoint["Saratoga Springs"],
   purchasePricePerPoint: directPrices.generalRange.low,
   amortizationYears: 15,
   packageTier: "Moderate resort",
   usdToGbpRate: fxRate.usdToGbp,
+  demandTier: "peak",
 };
 
 function App() {

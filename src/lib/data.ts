@@ -6,6 +6,8 @@ import saratogaSprings from "../data/points-charts/saratoga-springs.json";
 import animalKingdomVillas from "../data/points-charts/animal-kingdom-villas.json";
 import schoolHolidays from "../data/school-holidays/moorland-school.json";
 import fxRateData from "../data/fx-rate.json";
+import flightsData from "../data/flights-2026.json";
+import ticketsData from "../data/park-tickets-2026.json";
 import type { PointsChart } from "./types";
 
 export const dues = duesData;
@@ -14,6 +16,8 @@ export const directPrices = directData;
 export const packageHolidays = packageData;
 export const schoolHolidayData = schoolHolidays;
 export const fxRate = fxRateData;
+export const flights = flightsData;
+export const parkTickets = ticketsData;
 
 export const pointsCharts: PointsChart[] = [
   saratogaSprings as PointsChart,
