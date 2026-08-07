@@ -13,7 +13,7 @@ const defaultState: AssumptionsState = {
   view: "standard",
   nights: 7,
   adults: 2,
-  children: 2,
+  children: 1,
   duesPerPoint: dues.duesPerPoint["Saratoga Springs"],
   purchaseType: "direct",
   purchasePricePerPoint: directPrices.generalRange.low,
