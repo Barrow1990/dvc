@@ -1,12 +1,13 @@
 {
   "source": "https://www.floridafamilyholiday.com/florida-holiday-cost-2026-real-prices-for-uk-families/, https://thehouseoftravel.co.uk/blog-posts/how-much-does-a-disney-world-package-cost/, https://www.chartertravel.co.uk/holidays/florida/walt-disney-world/, https://orlandoholidayplanner.co.uk/disney-world-holidays/",
   "fetchedAt": "2026-08-07",
-  "note": "GBP, UK tour-operator package. Confirmed 2026-08-07: a real UK Disney package bundles return flights + Disney resort hotel + the UK-exclusive 14-Day Magic Ticket (park hopper, both water parks, Memory Maker) - genuinely 'everything included', which is why this is directly comparable to (DVC accommodation + flights-2026.json + park-tickets-2026.json) on the other side of the comparison. Prices depend heavily on travel dates - Easter/summer school holidays are highest demand and highest price.",
+  "note": "GBP, UK tour-operator package. Confirmed 2026-08-07: a real UK Disney package bundles return flights + Disney resort hotel + the UK-exclusive 14-Day Magic Ticket (park hopper, both water parks, Memory Maker) - genuinely 'everything included', which is why this is directly comparable to (DVC accommodation + flights-2026.json + park-tickets-2026.json) on the other side of the comparison. IMPORTANT CAVEAT (added 2026-08-09, flagged by the user as 'seems off'): perPersonGbp14Nights below is a 'typical price' figure from UK travel-blog aggregators (the sources above), not a live per-date booking-engine quote - it does NOT natively vary by travel date. demandMultiplier is a same-session addition to at least make it respond to the actual dates picked, reasoned from flights-2026.json's real, separately-sourced seasonal swing (low tier ~£1800-2400 vs peak ~£3000-4500 return, a ~1.6-1.7x swing) rather than a second independent package-price source - treat the multiplied figure as a rough approximation, not a real quote. Get an actual live quote from a UK tour operator before trusting this for a real booking decision.",
   "perPersonGbp14Nights": {
     "Value resort": { "low": 1799, "high": 2100 },
     "Moderate resort": { "low": 2150, "high": 2300 },
     "Deluxe resort": { "low": 2400, "high": 2700 }
   },
+  "demandMultiplier": { "low": 0.9, "regular": 1.0, "peak": 1.25 },
   "familyOf4Example14NightsHotelAndTicketsOnly": {
     "description": "2 adults + 2 kids (3-9), 14 nights, hotel + tickets ONLY - this specific example did not include flights, unlike perPersonGbp14Nights above. Kept for reference, not used in calculations.",
     "allStarSportsLowGbp": 4023,

@@ -75,6 +75,7 @@ export function TripComparison({ state }: Props) {
     partySize,
     packageNights: 14,
     tripNights: state.nights,
+    demandMultiplier: packageHolidays.demandMultiplier[state.demandTier],
   });
 
   return (

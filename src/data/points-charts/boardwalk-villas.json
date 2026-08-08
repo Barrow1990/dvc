@@ -1,6 +1,6 @@
 {
   "resort": "BoardWalk Villas",
-  "tier": "deluxe",
+  "tier": "deluxe villas",
   "source": "https://dvctripplanner.com/resort/disneys-boardwalk-villas",
   "fetchedAt": "2026-08-08",
   "note": "Points required per night (Resort View / Boardwalk-Preferred View), direct nightly values per the source. 2-bedroom and 3-bedroom grand villa deliberately excluded - the source extraction's figures for those didn't scale consistently with every other resort's studio->1BR->2BR pattern verified in this dataset, so they were dropped rather than risk a wrong number. Re-verify from a primary source (e.g. an official Disney prospectus PDF) before relying on 2BR/3BR pricing here.",
@@ -124,5 +124,6 @@
         }
       }
     }
-  ]
+  ],
+  "region": "Walt Disney World"
 }

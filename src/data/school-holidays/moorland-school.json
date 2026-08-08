@@ -17,14 +17,15 @@
     { "name": "May half-term 2027", "start": "2027-05-28", "end": "2027-06-07" }
   ],
   "holidayWindows": [
-    { "name": "Feb half-term 2026", "start": "2026-02-13", "end": "2026-02-23", "type": "half-term" },
-    { "name": "Easter holidays 2026", "start": "2026-03-27", "end": "2026-04-20", "type": "main" },
-    { "name": "May half-term 2026", "start": "2026-05-22", "end": "2026-06-01", "type": "half-term" },
-    { "name": "Summer holidays 2026", "start": "2026-07-03", "end": "2026-09-07", "type": "main" },
-    { "name": "Oct half-term 2026", "start": "2026-10-16", "end": "2026-11-02", "type": "half-term" },
-    { "name": "Christmas holidays 2026", "start": "2026-12-11", "end": "2027-01-05", "type": "main" },
-    { "name": "Feb half-term 2027", "start": "2027-02-12", "end": "2027-02-22", "type": "half-term" },
-    { "name": "Easter holidays 2027", "start": "2027-03-25", "end": "2027-04-19", "type": "main" },
-    { "name": "May half-term 2027", "start": "2027-05-28", "end": "2027-06-07", "type": "half-term" }
-  ]
+    { "name": "Feb half-term 2026", "start": "2026-02-13", "end": "2026-02-23", "type": "half-term", "demandTier": "low" },
+    { "name": "Easter holidays 2026", "start": "2026-03-27", "end": "2026-04-20", "type": "main", "demandTier": "regular" },
+    { "name": "May half-term 2026", "start": "2026-05-22", "end": "2026-06-01", "type": "half-term", "demandTier": "regular" },
+    { "name": "Summer holidays 2026", "start": "2026-07-03", "end": "2026-09-07", "type": "main", "demandTier": "peak" },
+    { "name": "Oct half-term 2026", "start": "2026-10-16", "end": "2026-11-02", "type": "half-term", "demandTier": "regular" },
+    { "name": "Christmas holidays 2026", "start": "2026-12-11", "end": "2027-01-05", "type": "main", "demandTier": "peak" },
+    { "name": "Feb half-term 2027", "start": "2027-02-12", "end": "2027-02-22", "type": "half-term", "demandTier": "low" },
+    { "name": "Easter holidays 2027", "start": "2027-03-25", "end": "2027-04-19", "type": "main", "demandTier": "regular" },
+    { "name": "May half-term 2027", "start": "2027-05-28", "end": "2027-06-07", "type": "half-term", "demandTier": "regular" }
+  ],
+  "demandTierNote": "demandTier per window is reasoned from flights-2026.json's real seasonal examples (low: 'Feb half-term / Easter, booked well ahead'; regular: 'October half-term'; peak: 'Peak summer, also assume similar for Christmas') - Easter is genuinely borderline (flights.json's own low-tier example includes it, but real demand rises sharply in the back half of the Easter window as it nears summer) and is set to 'regular' here as the safer/more representative middle estimate across the whole window rather than just its early days. Adjust per window if you have a firmer read on your specific dates."
 }

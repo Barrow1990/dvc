@@ -1,6 +1,6 @@
 {
   "resort": "Aulani",
-  "tier": "deluxe",
+  "tier": "deluxe villas",
   "source": "https://dvctripplanner.com/resort/aulani-disney-vacation-club-villas-ko-olina-hawaii",
   "fetchedAt": "2026-08-08",
   "note": "Points required per night, direct nightly values (Hawaii-specific calendar, different from the standard Orlando season dates used elsewhere in this dataset). 'standard'/'preferred' here map to Aulani's real 'Standard View'/'Ocean View' - two intermediate tiers (Island Garden View, Poolside Garden View) exist and aren't modeled. The Hotel Room category (no kitchen) is also excluded as not comparable to a studio villa elsewhere.",
@@ -100,5 +100,6 @@
         "threeBedroom": 184
       }
     }
-  ]
+  ],
+  "region": "Aulani (Hawaii)"
 }

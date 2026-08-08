@@ -1,6 +1,6 @@
 {
   "resort": "Riviera Resort",
-  "tier": "deluxe",
+  "tier": "deluxe villas",
   "source": "https://dvctripplanner.com/resort/disneys-riviera-resort",
   "fetchedAt": "2026-08-08",
   "note": "Points required per night. Source chart splits by day-of-week (Sun-Thu vs Fri-Sat) - values below are each season's published 7-night weekly total divided by 7, a nightly average, not the real per-night figure (cheaper weeknights, pricier Fri/Sat). The source table's Resort View vs Preferred View columns weren't reliably distinguishable in this extraction, so only one view is modeled (mapped to 'standard') - re-verify Preferred View pricing from a primary source if it matters for your decision. Tower Studio (a distinct, cheaper room type) also exists at this resort and isn't modeled - this app's schema has no slot for it. Riviera is one of the 3 resale-restricted resorts.",
@@ -138,5 +138,6 @@
         "threeBedroom": 71.71
       }
     }
-  ]
+  ],
+  "region": "Walt Disney World"
 }

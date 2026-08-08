@@ -9,9 +9,9 @@ a number in the dashboard.
 | `dues-2026.json` | Annual dues $/point, **all 17 DVC resorts** | 2026-08-08 | Every ~February, when Disney publishes the next year's dues |
 | `resale-prices-2026.json` | Resale $/point by resort tier (not every resort individually) | 2026-08-06 | Monthly-ish - resale market moves; treat as a planning estimate, get a real broker quote before deciding |
 | `direct-prices-2026.json` | Disney direct $/point, **all 17 DVC resorts** | 2026-08-08 | After any Disney price-increase announcement (was 2026-02-10 for this data) |
-| `package-holidays-2026.json` | UK tour-operator package costs (GBP) | 2026-08-06 | Each time you're comparing a real trip - these are seasonal/demand-driven, the ranges here are a rough planning baseline only |
+| `package-holidays-2026.json` | UK tour-operator package costs (GBP) + a demand-tier multiplier | 2026-08-06 (multiplier added 2026-08-09) | **Read the file's own note before trusting this** - it's a blog-aggregator "typical price" figure, not a live per-date quote. See "Package pricing caveat" below. |
 | `points-charts/*.json` | Full 2026 points charts, **all 17 DVC resorts** | 2026-08-06 to 2026-08-08 | Annually - Disney publishes a new points chart PDF each year. See "Points chart data quality" below - several resorts have known gaps/omissions, check each file's own `note` field |
-| `school-holidays/moorland-school.json` | Term dates through Summer 2027 | 2026-08-06 | Christmas 2026/2027 dates weren't published yet at fetch time - check back on the school's site |
+| `school-holidays/moorland-school.json` | Term dates through Summer 2027 + a demand tier per holiday window | 2026-08-06 (demand tiers added 2026-08-09) | Christmas 2026/2027 dates weren't published yet at fetch time - check back on the school's site |
 | `fx-rate.json` | USD→GBP: latest, real 7-day/30-day low/high/avg | 2026-08-06 | Run `npm run update-fx` any time - fetches real ECB historical rates via the Frankfurter API (free, no key) and rewrites this file. The app has quick-select buttons for latest/7d-avg/30d-avg/30d-low/30d-high. |
 | `flights-2026.json` | UK→Orlando return flights, family-of-4 GBP, by demand tier | 2026-08-07 | Each time you're comparing a real trip - flight prices are highly date-specific, these are planning-level ranges |
 | `park-tickets-2026.json` | UK-exclusive 14-Day Magic Ticket, GBP per person (adult/child), by demand tier | 2026-08-07 | Annually alongside Disney's own price updates |
@@ -30,6 +30,50 @@ cost against a package price without adding flights and tickets to the
 DVC side wasn't a fair comparison - fixed by adding `flights-2026.json`
 and `park-tickets-2026.json`, both included in the DVC total everywhere
 in the app now.
+
+## Package pricing caveat (flagged 2026-08-09)
+
+`package-holidays-2026.json`'s `perPersonGbp14Nights` figures are "typical
+price" ranges from UK travel-blog aggregators (floridafamilyholiday.com,
+thehouseoftravel.co.uk, chartertravel.co.uk, orlandoholidayplanner.co.uk)
+- **not a live quote from a real tour operator's booking engine for
+specific dates**. That's a real limitation: the same £2,150-2,300pp
+Moderate-resort figure was being shown regardless of whether you picked
+half-term or peak summer.
+
+Partial fix: added `demandMultiplier` (low 0.9× / regular 1.0× / peak
+1.25×) so the price at least responds to the demand tier you've picked,
+reasoned from `flights-2026.json`'s real, separately-sourced seasonal
+swing (not a second independent package-price source). Treat the result
+as a rough approximation - get an actual live quote from a UK tour
+operator before trusting this for a real booking decision.
+
+## DVC resorts are not "Value/Moderate/Deluxe" (fixed 2026-08-09)
+
+Every DVC resort is Disney's own **"Deluxe Villas"** category - Value/
+Moderate/Deluxe is a separate, unrelated classification for cash-only WDW
+hotels (All-Star Movies, Port Orleans, etc.) that have no DVC villas at
+all. Every points-chart file's `tier` field previously mislabeled cheaper
+DVC resorts (Old Key West, Hilton Head, Vero Beach) as "value" and Fort
+Wilderness Cabins as "moderate" - confusing DVC's relative pricing with
+Disney's real, different hotel-tier system. Fixed: `tier` is now always
+`"deluxe villas"` (kept for provenance), and a new `region` field (Walt
+Disney World / Disneyland Resort / Aulani (Hawaii) / East Coast) drives
+the resort picker's grouping instead - a real, useful distinction rather
+than a made-up one.
+
+## School holiday → season/demand-tier picker (added 2026-08-09)
+
+The Assumptions panel's "School holiday" dropdown picks a real Moorland
+School holiday window (`school-holidays/moorland-school.json`) and
+auto-derives both the DVC points season (via `findSeasonForDate` in
+`src/lib/calculations.ts`, matching the window's *start* date against the
+selected resort's own season date ranges - a holiday window spanning two
+points seasons, like Christmas, is matched on its start only) and the
+flights/tickets demand tier (from each window's own `demandTier` field,
+reasoned from `flights-2026.json`'s real seasonal examples - see that
+field's `demandTierNote`). Season and demand tier stay directly editable
+afterward if you want to override the auto-pick.
 
 ## Points chart data quality (read before trusting a specific resort/room)
 

@@ -1,9 +1,18 @@
 import type { DemandTier, PurchaseType, RoomType, ViewType } from "../lib/types";
-import { pointsCharts, packageHolidays, fxRate, directPrices, resalePrices, directVsResalePerks } from "../lib/data";
-import { ROOM_TYPE_LABELS } from "../lib/calculations";
+import {
+  pointsCharts,
+  packageHolidays,
+  fxRate,
+  directPrices,
+  resalePrices,
+  directVsResalePerks,
+  schoolHolidayData,
+} from "../lib/data";
+import { findSeasonForDate, ROOM_TYPE_LABELS } from "../lib/calculations";
 
 export interface AssumptionsState {
   resortIndex: number;
+  holidayWindowName: string;
   seasonName: string;
   roomType: RoomType;
   view: ViewType;
@@ -25,12 +34,11 @@ interface Props {
   onChange: (next: AssumptionsState) => void;
 }
 
-const TIER_ORDER = ["value", "moderate", "deluxe"] as const;
-const TIER_LABELS: Record<(typeof TIER_ORDER)[number], string> = {
-  value: "Value resorts",
-  moderate: "Moderate resorts",
-  deluxe: "Deluxe resorts",
-};
+// Every DVC resort is Disney's "Deluxe Villas" category - there's no real
+// value/moderate/deluxe split within DVC (that's a different, unrelated
+// classification for cash-only WDW hotels). Grouped by region instead,
+// which is a real, useful distinction (different parks, different flights).
+const REGION_ORDER = ["Walt Disney World", "Disneyland Resort", "Aulani (Hawaii)", "East Coast"] as const;
 
 /** Resale prices are only tracked per resort-tier, not every individual
  * resort - falls back to the blended market average when a specific
@@ -60,6 +68,13 @@ function directPriceForResort(resort: string): number {
   return (directPrices.generalRange.low + directPrices.generalRange.high) / 2;
 }
 
+function nightsAvailableInWindow(windowName: string): number {
+  const w = schoolHolidayData.holidayWindows.find((h) => h.name === windowName);
+  if (!w) return 0;
+  const ms = new Date(`${w.end}T00:00:00Z`).getTime() - new Date(`${w.start}T00:00:00Z`).getTime();
+  return Math.round(ms / (1000 * 60 * 60 * 24));
+}
+
 export function Assumptions({ state, onChange }: Props) {
   const chart = pointsCharts[state.resortIndex];
   const availableRoomTypes = Object.keys(
@@ -71,6 +86,22 @@ export function Assumptions({ state, onChange }: Props) {
 
   function set<K extends keyof AssumptionsState>(key: K, value: AssumptionsState[K]) {
     onChange({ ...state, [key]: value });
+  }
+
+  /** Maps a real school holiday window onto whichever points season and
+   * demand tier applies for the given resort - sets both at once so the
+   * two stay in sync with the picker rather than needing manual lookup. */
+  function applyHolidayWindow(windowName: string, resortIdx: number) {
+    const w = schoolHolidayData.holidayWindows.find((h) => h.name === windowName);
+    const resortChart = pointsCharts[resortIdx];
+    const seasonName = w ? findSeasonForDate(resortChart, w.start) : null;
+    onChange({
+      ...state,
+      resortIndex: resortIdx,
+      holidayWindowName: windowName,
+      seasonName: seasonName ?? state.seasonName,
+      demandTier: (w?.demandTier as AssumptionsState["demandTier"]) ?? state.demandTier,
+    });
   }
 
   return (
@@ -90,15 +121,15 @@ export function Assumptions({ state, onChange }: Props) {
             Resort
             <select
               value={state.resortIndex}
-              onChange={(e) => set("resortIndex", Number(e.target.value))}
+              onChange={(e) => applyHolidayWindow(state.holidayWindowName, Number(e.target.value))}
             >
-              {TIER_ORDER.map((tier) => {
+              {REGION_ORDER.map((region) => {
                 const resorts = pointsCharts
                   .map((c, i) => ({ c, i }))
-                  .filter(({ c }) => c.tier === tier);
+                  .filter(({ c }) => c.region === region);
                 if (resorts.length === 0) return null;
                 return (
-                  <optgroup key={tier} label={TIER_LABELS[tier]}>
+                  <optgroup key={region} label={region}>
                     {resorts.map(({ c, i }) => (
                       <option key={c.resort} value={i}>
                         {c.resort}
@@ -107,6 +138,20 @@ export function Assumptions({ state, onChange }: Props) {
                   </optgroup>
                 );
               })}
+            </select>
+          </label>
+
+          <label>
+            School holiday
+            <select
+              value={state.holidayWindowName}
+              onChange={(e) => applyHolidayWindow(e.target.value, state.resortIndex)}
+            >
+              {schoolHolidayData.holidayWindows.map((w) => (
+                <option key={w.name} value={w.name}>
+                  {w.name}
+                </option>
+              ))}
             </select>
           </label>
 
@@ -183,8 +228,12 @@ export function Assumptions({ state, onChange }: Props) {
           </label>
         </div>
         <p className="field-hint">
-          Party size (adults + children) drives both the park-ticket cost and how the package
-          price scales. Season and demand tier are separate calendars - see DATA_SOURCES.md.
+          {state.holidayWindowName} has {nightsAvailableInWindow(state.holidayWindowName)} nights
+          available ({schoolHolidayData.holidayWindows.find((w) => w.name === state.holidayWindowName)?.start} to{" "}
+          {schoolHolidayData.holidayWindows.find((w) => w.name === state.holidayWindowName)?.end}) - Nights above is
+          how long you'd actually stay within it. Picking a holiday sets Season and Demand tier for you; both stay
+          editable if you want to override. Party size (adults + children) drives park-ticket cost and package
+          scaling.
         </p>
       </fieldset>
 

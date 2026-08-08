@@ -1,6 +1,6 @@
 {
   "resort": "Old Key West Resort",
-  "tier": "value",
+  "tier": "deluxe villas",
   "source": "https://dvctripplanner.com/resort/disneys-old-key-west-resort",
   "fetchedAt": "2026-08-08",
   "note": "Points required per night. Source gave Sun-Thu/Fri-Sat pairs, no weekly total - nightly average computed as (5*SunThu + 2*FriSat)/7. Only one view category (mapped to 'standard').",
@@ -138,5 +138,6 @@
         "threeBedroom": 88.86
       }
     }
-  ]
+  ],
+  "region": "Walt Disney World"
 }

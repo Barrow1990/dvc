@@ -1,6 +1,6 @@
 {
   "resort": "Grand Californian Villas",
-  "tier": "deluxe",
+  "tier": "deluxe villas",
   "source": "https://dvctripplanner.com/resort/the-villas-at-disneys-grand-californian-hotel-and-spa",
   "fetchedAt": "2026-08-08",
   "note": "Points required per night (Disneyland-specific calendar). Source gave Sun-Thu/Fri-Sat pairs, no weekly total - nightly average computed as (5*SunThu + 2*FriSat)/7. Only one view category shown (mapped to 'standard').",
@@ -84,5 +84,6 @@
         "threeBedroom": 194.0
       }
     }
-  ]
+  ],
+  "region": "Disneyland Resort"
 }

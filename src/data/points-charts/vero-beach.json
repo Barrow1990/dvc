@@ -1,6 +1,6 @@
 {
   "resort": "Vero Beach",
-  "tier": "value",
+  "tier": "deluxe villas",
   "source": "https://dvctripplanner.com/resort/disneys-vero-beach-resort",
   "fetchedAt": "2026-08-08",
   "note": "Points required per night, direct nightly Deluxe Studio values only ('standard'/'preferred' map to Standard View/Ocean View). 1-bedroom/2-bedroom/3-bedroom and the Deluxe Inn (hotel-room-only, no kitchen) deliberately excluded - the source extraction's figures for those jumped implausibly against the studio, likely a table-parsing error; re-verify from a primary source before relying on them. Not a Walt Disney World resort - no direct park access at all, see transport notes.",
@@ -70,5 +70,6 @@
         }
       }
     }
-  ]
+  ],
+  "region": "East Coast"
 }

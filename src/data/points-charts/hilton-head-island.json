@@ -1,6 +1,6 @@
 {
   "resort": "Hilton Head Island Resort",
-  "tier": "value",
+  "tier": "deluxe villas",
   "source": "https://dvctripplanner.com/resort/disneys-hilton-head-island-resort",
   "fetchedAt": "2026-08-08",
   "note": "Points required per night. Source gave Sun-Thu/Fri-Sat pairs, no weekly total - nightly average computed as (5*SunThu + 2*FriSat)/7. Only one view category shown (mapped to 'standard'). Not a Walt Disney World resort - no direct park access at all, see transport notes.",
@@ -81,5 +81,6 @@
         "threeBedroom": 82.43
       }
     }
-  ]
+  ],
+  "region": "East Coast"
 }

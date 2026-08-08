@@ -1,6 +1,6 @@
 {
   "resort": "Boulder Ridge Villas",
-  "tier": "deluxe",
+  "tier": "deluxe villas",
   "source": "https://dvctripplanner.com/resort/boulder-ridge-villas-at-disneys-wilderness-lodge",
   "fetchedAt": "2026-08-08",
   "note": "Points required per night. Source chart splits by day-of-week (Sun-Thu vs Fri-Sat) - values below are each season's published 7-night weekly total divided by 7, a nightly average, not the real per-night figure (cheaper weeknights, pricier Fri/Sat). Only one view category shown in the source (mapped to 'standard'). No 3-bedroom/grand villa at this resort.",
@@ -131,5 +131,6 @@
         }
       }
     }
-  ]
+  ],
+  "region": "Walt Disney World"
 }

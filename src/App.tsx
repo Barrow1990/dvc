@@ -12,6 +12,7 @@ const DEFAULT_RESORT = "Saratoga Springs";
 
 const defaultState: AssumptionsState = {
   resortIndex: pointsCharts.findIndex((c) => c.resort === DEFAULT_RESORT),
+  holidayWindowName: "Summer holidays 2026",
   seasonName: "Peak Season",
   roomType: "studio",
   view: "standard",

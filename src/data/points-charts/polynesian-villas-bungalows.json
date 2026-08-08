@@ -1,65 +1,122 @@
 {
   "resort": "Polynesian Villas & Bungalows",
-  "tier": "deluxe",
+  "tier": "deluxe villas",
   "source": "https://dvctripplanner.com/resort/disneys-polynesian-villas-and-bungalows",
   "fetchedAt": "2026-08-08",
   "note": "Points required per night. The source chart splits by day-of-week (Sun-Thu vs Fri-Sat), which this app's data model doesn't represent - values below are each season's published 7-night total divided by 7, i.e. a nightly average, not the real (cheaper on weeknights, pricier Fri/Sat) per-night figure. 'standard' = Resort View, 'preferred' = Preferred View. The Bungalow only has one view category (no Preferred option) - mapped to twoBedroom.standard since this app's schema doesn't have a dedicated bungalow room type; it's NOT a typical 2-bedroom villa, it's the standalone overwater/lakeside bungalow, hence the much higher point cost.",
   "seasons": [
     {
       "name": "September",
-      "dateRanges": ["Sep 1-30"],
+      "dateRanges": [
+        "Sep 1-30"
+      ],
       "pointsPerNight": {
-        "studio": { "standard": 15.86, "preferred": 21.14 },
-        "twoBedroom": { "standard": 119.71 }
+        "studio": {
+          "standard": 15.86,
+          "preferred": 21.14
+        },
+        "twoBedroom": {
+          "standard": 119.71
+        }
       }
     },
     {
       "name": "January & Early May",
-      "dateRanges": ["Jan 1-31", "May 1-14"],
+      "dateRanges": [
+        "Jan 1-31",
+        "May 1-14"
+      ],
       "pointsPerNight": {
-        "studio": { "standard": 17.86, "preferred": 22.57 },
-        "twoBedroom": { "standard": 127.14 }
+        "studio": {
+          "standard": 17.86,
+          "preferred": 22.57
+        },
+        "twoBedroom": {
+          "standard": 127.14
+        }
       }
     },
     {
       "name": "Late May & Early December",
-      "dateRanges": ["May 15-Jun 10", "Dec 1-23"],
+      "dateRanges": [
+        "May 15-Jun 10",
+        "Dec 1-23"
+      ],
       "pointsPerNight": {
-        "studio": { "standard": 19.86, "preferred": 23.14 },
-        "twoBedroom": { "standard": 133.43 }
+        "studio": {
+          "standard": 19.86,
+          "preferred": 23.14
+        },
+        "twoBedroom": {
+          "standard": 133.43
+        }
       }
     },
     {
       "name": "February & Summer",
-      "dateRanges": ["Feb 1-15", "Jun 11-Aug 31"],
+      "dateRanges": [
+        "Feb 1-15",
+        "Jun 11-Aug 31"
+      ],
       "pointsPerNight": {
-        "studio": { "standard": 20.86, "preferred": 24.86 },
-        "twoBedroom": { "standard": 142.0 }
+        "studio": {
+          "standard": 20.86,
+          "preferred": 24.86
+        },
+        "twoBedroom": {
+          "standard": 142.0
+        }
       }
     },
     {
       "name": "Fall",
-      "dateRanges": ["Oct 1-Nov 23", "Nov 27-30"],
+      "dateRanges": [
+        "Oct 1-Nov 23",
+        "Nov 27-30"
+      ],
       "pointsPerNight": {
-        "studio": { "standard": 22.86, "preferred": 26.43 },
-        "twoBedroom": { "standard": 156.29 }
+        "studio": {
+          "standard": 22.86,
+          "preferred": 26.43
+        },
+        "twoBedroom": {
+          "standard": 156.29
+        }
       }
     },
     {
       "name": "Spring Break / Thanksgiving",
-      "dateRanges": ["Feb 16-Mar 20", "Mar 29-Apr 30", "Nov 24-26"],
+      "dateRanges": [
+        "Feb 16-Mar 20",
+        "Mar 29-Apr 30",
+        "Nov 24-26"
+      ],
       "pointsPerNight": {
-        "studio": { "standard": 25.86, "preferred": 29.14 },
-        "twoBedroom": { "standard": 168.57 }
+        "studio": {
+          "standard": 25.86,
+          "preferred": 29.14
+        },
+        "twoBedroom": {
+          "standard": 168.57
+        }
       }
     },
     {
       "name": "Highest Demand",
-      "dateRanges": ["Mar 21-28", "Dec 24-31"],
+      "dateRanges": [
+        "Mar 21-28",
+        "Dec 24-31"
+      ],
       "pointsPerNight": {
-        "studio": { "standard": 34.57, "preferred": 41.57 },
-        "twoBedroom": { "standard": 206.71 }
+        "studio": {
+          "standard": 34.57,
+          "preferred": 41.57
+        },
+        "twoBedroom": {
+          "standard": 206.71
+        }
       }
     }
-  ]
+  ],
+  "region": "Walt Disney World"
 }

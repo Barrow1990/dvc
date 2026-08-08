@@ -7,6 +7,7 @@ import type {
   FullDvcTripCostGbp,
   PackageTripCost,
   PackageTripInputs,
+  PointsChart,
   PointsValue,
   RoomType,
   TicketsCost,
@@ -17,6 +18,49 @@ import type {
  * midpoint is a reasonable single-number estimate for comparison purposes. */
 export function pointsToNumber(value: PointsValue): number {
   return Array.isArray(value) ? (value[0] + value[1]) / 2 : value;
+}
+
+const MONTH_INDEX: Record<string, number> = {
+  Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
+  Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11,
+};
+
+function parseDateRangeBound(part: string, fallbackMonth: number): { month: number; day: number } {
+  const match = part.trim().match(/^([A-Za-z]{3})?\s*(\d{1,2})$/);
+  if (!match) throw new Error(`Cannot parse date range bound "${part}"`);
+  const month = match[1] ? MONTH_INDEX[match[1]] : fallbackMonth;
+  return { month, day: Number(match[2]) };
+}
+
+/** Every points chart's dateRanges strings look like "Mar 21-28" or
+ * "Feb 16-Mar 20" - no cross-year wraparound in this dataset (a season
+ * spanning Dec into Jan is always two separate range strings, e.g.
+ * ["Mar 21-28", "Dec 24-31"], never "Dec 24-Jan 5"), so a simple
+ * (month, day) tuple comparison is enough. */
+function dateRangeContainsMonthDay(range: string, month: number, day: number): boolean {
+  const [startPart, endPart] = range.split("-");
+  const start = parseDateRangeBound(startPart, -1);
+  const end = parseDateRangeBound(endPart, start.month);
+  const cmp = (a: { month: number; day: number }, b: { month: number; day: number }) =>
+    a.month - b.month || a.day - b.day;
+  return cmp({ month, day }, start) >= 0 && cmp({ month, day }, end) <= 0;
+}
+
+/** Maps a real calendar date (e.g. a school holiday window's start date)
+ * onto whichever of this resort's own points-chart seasons contains it.
+ * A holiday window that spans two seasons (e.g. Christmas holidays
+ * crossing from one points season into the next) is matched against its
+ * START date only - a deliberate simplification, not a bug. */
+export function findSeasonForDate(chart: PointsChart, isoDate: string): string | null {
+  const d = new Date(`${isoDate}T00:00:00Z`);
+  const month = d.getUTCMonth();
+  const day = d.getUTCDate();
+  for (const season of chart.seasons) {
+    if (season.dateRanges.some((r) => dateRangeContainsMonthDay(r, month, day))) {
+      return season.name;
+    }
+  }
+  return null;
 }
 
 function getPointsPerNight(
@@ -67,8 +111,9 @@ export function calculateDvcTripCost(inputs: DvcTripInputs): DvcTripCost {
  * perfectly linear per night), noted as such wherever this is shown.
  */
 export function calculatePackageTripCost(inputs: PackageTripInputs): PackageTripCost {
-  const nightlyLow = inputs.perPersonRange.low / inputs.packageNights;
-  const nightlyHigh = inputs.perPersonRange.high / inputs.packageNights;
+  const multiplier = inputs.demandMultiplier ?? 1;
+  const nightlyLow = (inputs.perPersonRange.low * multiplier) / inputs.packageNights;
+  const nightlyHigh = (inputs.perPersonRange.high * multiplier) / inputs.packageNights;
   return {
     totalLowGbp: nightlyLow * inputs.tripNights * inputs.partySize,
     totalHighGbp: nightlyHigh * inputs.tripNights * inputs.partySize,

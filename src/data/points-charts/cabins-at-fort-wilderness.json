@@ -1,6 +1,6 @@
 {
   "resort": "Cabins at Fort Wilderness",
-  "tier": "moderate",
+  "tier": "deluxe villas",
   "source": "https://dvctripplanner.com/resort/the-cabins-at-disneys-fort-wilderness-resort",
   "fetchedAt": "2026-08-08",
   "note": "Points required per night. Source chart splits by day-of-week (Sun-Thu vs Fri-Sat) - values below are each season's published 7-night weekly total divided by 7, a nightly average, not the real per-night figure (cheaper weeknights, pricier Fri/Sat). This resort is just one accommodation type (the Cabin, sleeps 6) - repurposed the grandVilla.standard slot for it since this app's schema has no dedicated cabin room type, same convention as Copper Creek/Polynesian. This is one of the 3 resale-restricted resorts.",
@@ -89,5 +89,6 @@
         }
       }
     }
-  ]
+  ],
+  "region": "Walt Disney World"
 }

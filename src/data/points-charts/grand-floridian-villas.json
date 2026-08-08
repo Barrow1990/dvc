@@ -1,6 +1,6 @@
 {
   "resort": "Grand Floridian Villas",
-  "tier": "deluxe",
+  "tier": "deluxe villas",
   "source": "https://dvctripplanner.com/resort/the-villas-at-disneys-grand-floridian-resort-and-spa",
   "fetchedAt": "2026-08-08",
   "note": "Points required per night, direct nightly values per the source (not a weekly/day-of-week split). 'studio' here is the Resort Studio (RS) category specifically - Grand Floridian also has a pricier 'Deluxe Studio' (ST) category not modeled, since this app's schema doesn't have a third studio tier. 1-bedroom Preferred View and 3-bedroom Resort View weren't given in the source ('-').",
@@ -152,5 +152,6 @@
         "threeBedroom": 343
       }
     }
-  ]
+  ],
+  "region": "Walt Disney World"
 }

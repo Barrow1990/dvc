@@ -21,7 +21,12 @@ export interface Season {
 
 export interface PointsChart {
   resort: string;
+  // Every DVC resort is Disney's own "Deluxe Villas" category - this field
+  // is always "deluxe villas", kept for provenance rather than grouping.
+  // Group/filter by `region` instead - Value/Moderate/Deluxe are a
+  // *different*, unrelated classification for cash-only WDW hotels.
   tier: string;
+  region: string;
   source: string;
   fetchedAt: string;
   note: string;
@@ -84,6 +89,7 @@ export interface PackageTripInputs {
   partySize: number;
   packageNights: number; // the 14-night baseline the source data uses
   tripNights: number; // the actual trip length being compared
+  demandMultiplier?: number; // scales the base range for the selected demand tier - see package-holidays-2026.json's note
 }
 
 export interface PackageTripCost {

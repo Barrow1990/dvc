@@ -69,6 +69,7 @@ export function BreakEvenChart({ state, years }: Props) {
     partySize,
     packageNights: 14,
     tripNights: state.nights,
+    demandMultiplier: packageHolidays.demandMultiplier[state.demandTier],
   });
   const packageAnnualGbp = (pkg.totalLowGbp + pkg.totalHighGbp) / 2;
 

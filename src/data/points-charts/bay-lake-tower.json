@@ -1,6 +1,6 @@
 {
   "resort": "Bay Lake Tower",
-  "tier": "deluxe",
+  "tier": "deluxe villas",
   "source": "https://dvctripplanner.com/resort/bay-lake-tower-at-disneys-contemporary-resort",
   "fetchedAt": "2026-08-08",
   "note": "Points required per night - source table gave direct nightly R(esort)/P(referred) view values, not a day-of-week split. Theme Park View (TP, studio/1BR/2BR) and the 3BR's Resort-View option omitted - not part of this app's view schema (standard/preferred only).",
@@ -159,5 +159,6 @@
         "threeBedroom": 146
       }
     }
-  ]
+  ],
+  "region": "Walt Disney World"
 }

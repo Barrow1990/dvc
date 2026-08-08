@@ -65,6 +65,7 @@ export function StatTiles({ state }: Props) {
       partySize,
       packageNights: 14,
       tripNights: state.nights,
+      demandMultiplier: packageHolidays.demandMultiplier[state.demandTier],
     });
     const packageAnnualGbp = (pkg.totalLowGbp + pkg.totalHighGbp) / 2;
     breakEvenYear = findBreakEvenYear(calculateBreakEven(purchaseCostGbp, annualRecurringGbp, packageAnnualGbp, 30));
@@ -77,6 +78,7 @@ export function StatTiles({ state }: Props) {
     partySize,
     packageNights: 14,
     tripNights: state.nights,
+    demandMultiplier: packageHolidays.demandMultiplier[state.demandTier],
   });
   const packageTotalGbp = (pkg.totalLowGbp + pkg.totalHighGbp) / 2;
 

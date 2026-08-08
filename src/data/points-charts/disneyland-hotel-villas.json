@@ -1,6 +1,6 @@
 {
   "resort": "Disneyland Hotel Villas",
-  "tier": "deluxe",
+  "tier": "deluxe villas",
   "source": "https://dvctripplanner.com/resort/the-villas-at-disneyland-hotel",
   "fetchedAt": "2026-08-08",
   "note": "Points required per night, direct nightly Deluxe Studio values only (Disneyland-specific calendar). 1-bedroom/2-bedroom/3-bedroom deliberately excluded - the source extraction's figures for those didn't scale plausibly against the studio (implausible jumps), likely a table-parsing error in this extraction; re-verify from a primary source before relying on them. Duo Studio (a distinct, cheaper room type) also exists and isn't modeled. This resort is one of the 3 resale-restricted resorts.",
@@ -96,5 +96,6 @@
         }
       }
     }
-  ]
+  ],
+  "region": "Disneyland Resort"
 }
