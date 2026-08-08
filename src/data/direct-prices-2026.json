@@ -1,7 +1,7 @@
 {
-  "source": "https://www.thetraveler.org/disney-vacation-club-cost-explained-2026-buyers-guide/, https://dvcfan.com/purchasing-dvc/2026-dvc-direct-price-increase/",
+  "source": "https://www.thetraveler.org/disney-vacation-club-cost-explained-2026-buyers-guide/, https://dvcfan.com/purchasing-dvc/2026-dvc-direct-price-increase/. Polynesian Villas & Bungalows confirmed 2026-08-08 against an official Disney sales prospectus PDF (user-provided) - list price matches exactly at $243/point.",
   "fetchedAt": "2026-08-06",
-  "note": "USD per point, buying new/direct from Disney. Price increase effective 2026-02-10. General band $215-275/point depending on resort; specific post-increase examples below. Current promotions (e.g. discounts on 200+ point purchases) change independently of list price and aren't reflected here.",
+  "note": "USD per point, buying new/direct from Disney. Price increase effective 2026-02-10. General band $215-275/point depending on resort; specific post-increase examples below. Current promotions (e.g. discounts on 200+ point purchases) change independently of list price and aren't reflected here - the official Polynesian prospectus shows a real example: a per-point credit incentive scaling from $5/point at 150 points up to $20/point at 500+ points, e.g. 500 points nets a real $10,000 discount off list. Not modeled in this app's calculator (purchasePricePerPoint is a single flat number), but worth knowing a larger purchase gets genuinely cheaper per point.",
   "generalRange": { "low": 215, "high": 275 },
   "perPointByResort": {
     "Polynesian Villas & Bungalows": 243,

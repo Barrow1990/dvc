@@ -1,0 +1,12 @@
+{
+  "source": "Official Disney sales prospectus PDF (user-provided, 2026-08-08) for Polynesian Villas & Bungalows - a direct-purchase example, not resale, but Disney's own document notes the amount varies and this is the only real figure sourced so far.",
+  "fetchedAt": "2026-08-08",
+  "note": "Real example only, not a formula: a 150-point cash contract at Polynesian carries approximately $783.88 in one-time closing costs. Scales roughly with contract size/price but isn't a fixed percentage Disney publishes - resale closing costs (title company fees etc.) are a separate, generally larger cost not covered by this figure at all. Not modeled anywhere in this app's calculator yet.",
+  "example": {
+    "points": 150,
+    "resort": "Polynesian Villas & Bungalows",
+    "purchaseType": "direct",
+    "paymentType": "cash",
+    "closingCostsUsd": 783.88
+  }
+}

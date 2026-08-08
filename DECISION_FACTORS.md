@@ -51,15 +51,22 @@ directly as your thinking (or the real numbers) change.
   package discount — as a baseline. Not built; only DVC vs. UK package
   exists today.
 - **Contract expiration date (resort-specific).** DVC is a leasehold,
-  not fee-simple ownership — every resort has a fixed expiration year
-  (e.g. Saratoga Springs 2054, Animal Kingdom Villas 2057, Riviera
-  2070). This hard-caps how many years of use you're actually buying,
-  and isn't enforced anywhere in the calculator right now — a real gap
-  given it directly bounds the amortization horizon.
+  not fee-simple ownership — every resort has a fixed expiration year.
+  Confirmed for real against an official Disney sales document
+  (2026-08-08): Polynesian Villas & Bungalows expires **2066-01-31** —
+  see `contract-expirations.json`. Other resorts' dates aren't sourced
+  yet (commonly-cited figures exist online but weren't verified against
+  a primary source, so deliberately left out rather than repeated
+  unverified). This still isn't enforced anywhere in the calculator —
+  `amortizationYears` is a free-typed number, not capped by the real
+  expiration date even for Polynesian now that it's known.
 - **Dues inflation** — not modeled, see above.
-- **Closing costs (resale)** — title/closing fees, typically a few
-  hundred to ~£1–2k depending on contract size and broker. Not added to
-  the resale purchase price anywhere.
+- **Closing costs.** Confirmed one real example (2026-08-08, official
+  Disney document): a 150-point **direct cash** purchase at Polynesian
+  carries ~$783.88 in closing costs — see `closing-costs.json`. Resale
+  closing costs (title company fees etc.) are a separate, typically
+  larger cost, still not sourced. Neither is added to the purchase price
+  anywhere in the calculator yet.
 - **Financing costs** — the app assumes cash purchase. If financed,
   there's real interest cost; if paid cash, there's a real opportunity
   cost (that lump sum isn't invested elsewhere). Neither is modeled.
@@ -116,8 +123,12 @@ directly as your thinking (or the real numbers) change.
 
 ## Open decisions only you can make
 
-- **Which resort(s)** to seriously consider — only 2 have real points-
-  chart data modeled so far. Tell me which others to add.
+- **Which resort(s)** to seriously consider — only 3 have real points-
+  chart data modeled so far (Saratoga Springs, Animal Kingdom Villas,
+  Polynesian Villas & Bungalows). Tell me which others to add - an
+  official Disney sales prospectus PDF (like the one that seeded
+  Polynesian's real price/dues/expiration/closing-cost data) is the
+  best source if you can get one for a resort you're considering.
 - **Realistic annual trip pattern** (nights, room type, season) to size
   the points purchase around — the app currently uses whatever's typed
   into Assumptions, not a settled real plan.

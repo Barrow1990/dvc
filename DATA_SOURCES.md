@@ -16,6 +16,10 @@ a number in the dashboard.
 | `fx-rate.json` | USD→GBP: latest, real 7-day/30-day low/high/avg | 2026-08-06 | Run `npm run update-fx` any time - fetches real ECB historical rates via the Frankfurter API (free, no key) and rewrites this file. The app has quick-select buttons for latest/7d-avg/30d-avg/30d-low/30d-high. |
 | `flights-2026.json` | UK→Orlando return flights, family-of-4 GBP, by demand tier | 2026-08-07 | Each time you're comparing a real trip - flight prices are highly date-specific, these are planning-level ranges |
 | `park-tickets-2026.json` | UK-exclusive 14-Day Magic Ticket, GBP per person (adult/child), by demand tier | 2026-08-07 | Annually alongside Disney's own price updates |
+| `direct-vs-resale-perks-2026.json` | Blue Card eligibility/perks, resale-restricted resorts, resale vs direct discount % | 2026-08-07 | Annually, or if Disney changes the Membership Extras/resale-restriction policy |
+| `points-charts/polynesian-villas-bungalows.json` | Full 2026 points chart, nightly average (see note in file re: day-of-week) | 2026-08-08 | Annually - sourced from an official Disney sales prospectus PDF (user-provided) for price/dues, dvctripplanner.com for the points chart |
+| `contract-expirations.json` | Real deeded-ownership expiration date, Polynesian only so far | 2026-08-08 | As you source more resorts' real expiration dates - see Coverage gaps |
+| `closing-costs.json` | One real example (150-point direct cash purchase at Polynesian) | 2026-08-08 | As you get real resale closing-cost quotes - direct and resale costs differ |
 
 ## Why DVC needs flights + tickets added on top
 
@@ -30,15 +34,25 @@ in the app now.
 
 ## Coverage gaps (v1 scope)
 
-- Only 2 of DVC's ~17 resorts have a full points chart (Saratoga Springs,
-  Animal Kingdom Villas) - one value-tier, one deluxe-tier, enough to
-  demonstrate the comparison. Add more resorts' charts the same way as
-  needed (`dvctripplanner.com/resort/<slug>` fetches cleanly as text;
-  `wdwinfo.com` blocks automated fetches, `dvcfan.com`'s numbers are
-  PDF-only).
+- Only 3 of DVC's ~17 resorts have a full points chart (Saratoga Springs,
+  Animal Kingdom Villas, Polynesian Villas & Bungalows) - enough to
+  demonstrate the comparison across value/deluxe tiers. Add more resorts'
+  charts the same way as needed (`dvctripplanner.com/resort/<slug>`
+  fetches cleanly as text; `wdwinfo.com` blocks automated fetches,
+  `dvcfan.com`'s numbers are PDF-only - or provide the official Disney
+  sales prospectus PDF directly, which is what got Polynesian's real
+  price/dues data).
 - Animal Kingdom Villas' points are ranges (spanning its view categories)
   rather than exact per-view numbers - the source page didn't break them
-  out further.
+  out further. Polynesian's points are a nightly average (the source
+  chart splits Sun-Thu vs Fri-Sat, which this app doesn't model) - see
+  the note in `points-charts/polynesian-villas-bungalows.json`.
+- Contract expiration dates and closing costs are now sourced for
+  Polynesian only (see `contract-expirations.json`/`closing-costs.json`)
+  but **not yet wired into any calculation** - the app's amortization
+  years still isn't capped by a resort's real expiration date, and
+  closing costs aren't added to the purchase price anywhere. Tracked in
+  `DECISION_FACTORS.md`.
 - The "demand tier" (low/regular/peak) driving flights + ticket prices is
   a separate selector from the DVC points chart's own season - they're
   priced on genuinely different calendars (airline/Disney-UK-ticket demand

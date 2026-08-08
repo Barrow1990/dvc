@@ -27,11 +27,19 @@ interface Props {
 
 /** Resale prices are only tracked per resort-tier, not every individual
  * resort - falls back to the blended market average when a specific
- * resort (e.g. Animal Kingdom Villas) isn't in that breakdown. */
+ * resort (e.g. Animal Kingdom Villas) isn't in that breakdown. Tier keys
+ * like "Grand Floridian / Polynesian (premium)" bundle several resort
+ * names together, so this checks whether the resort name contains any
+ * of the tier key's slash-separated short names, not just an exact
+ * substring match of the whole resort name against the whole tier key. */
 function resalePriceMidpointForResort(resort: string): number {
-  const tierKey = Object.keys(resalePrices.rangesPerPointByResortTier).find((k) =>
-    k.includes(resort),
-  ) as keyof typeof resalePrices.rangesPerPointByResortTier | undefined;
+  const tierKey = Object.keys(resalePrices.rangesPerPointByResortTier).find((k) => {
+    const shortNames = k
+      .replace(/\(.*\)/, "")
+      .split("/")
+      .map((s) => s.trim());
+    return shortNames.some((name) => resort.includes(name));
+  }) as keyof typeof resalePrices.rangesPerPointByResortTier | undefined;
   if (tierKey) {
     const r = resalePrices.rangesPerPointByResortTier[tierKey];
     return (r.low + r.high) / 2;
