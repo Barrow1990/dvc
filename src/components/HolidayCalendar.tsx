@@ -2,9 +2,9 @@ import { schoolHolidayData } from "../lib/data";
 
 export function HolidayCalendar() {
   return (
-    <section>
+    <div className="card">
       <h2>School holiday windows</h2>
-      <p className="muted">
+      <p className="card-desc">
         Source: {schoolHolidayData.source} (fetched {schoolHolidayData.fetchedAt}). {schoolHolidayData.note}
       </p>
       <table>
@@ -27,6 +27,6 @@ export function HolidayCalendar() {
           ))}
         </tbody>
       </table>
-    </section>
+    </div>
   );
 }

@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { Assumptions, type AssumptionsState } from "./components/Assumptions";
+import { StatTiles } from "./components/StatTiles";
 import { TripComparison } from "./components/TripComparison";
 import { BreakEvenChart } from "./components/BreakEvenChart";
 import { HolidayCalendar } from "./components/HolidayCalendar";
@@ -29,26 +30,50 @@ const defaultState: AssumptionsState = {
 
 function App() {
   const [state, setState] = useState<AssumptionsState>(defaultState);
+  const [theme, setTheme] = useState<"light" | "dark">(() =>
+    window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light",
+  );
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+  }, [theme]);
 
   return (
     <div className="app">
-      <header>
-        <h1>DVC decision dashboard</h1>
-        <p className="muted">
-          No DVC contract owned yet - this compares buying in vs. a UK package holiday, for
-          real trips during real school holiday windows. See{" "}
-          <a href="https://github.com/Barrow1990/dvc/blob/main/DATA_SOURCES.md">
-            DATA_SOURCES.md
-          </a>{" "}
-          for where every number comes from.
-        </p>
+      <header className="app-header">
+        <div className="intro">
+          <h1>DVC decision dashboard</h1>
+          <p className="muted">
+            No DVC contract owned yet - this compares buying in vs. a UK package holiday, for
+            real trips during real school holiday windows. See{" "}
+            <a href="https://github.com/Barrow1990/dvc/blob/main/DATA_SOURCES.md">
+              DATA_SOURCES.md
+            </a>{" "}
+            for where every number comes from.
+          </p>
+        </div>
+        <button
+          type="button"
+          className="theme-toggle"
+          onClick={() => setTheme((t) => (t === "light" ? "dark" : "light"))}
+        >
+          {theme === "light" ? "Dark mode" : "Light mode"}
+        </button>
       </header>
 
-      <Assumptions state={state} onChange={setState} />
-      <TripComparison state={state} />
-      <BreakEvenChart state={state} years={20} />
-      <Transport resortIndex={state.resortIndex} />
-      <HolidayCalendar />
+      <div className="shell">
+        <aside className="sidebar">
+          <Assumptions state={state} onChange={setState} />
+        </aside>
+
+        <div className="results">
+          <StatTiles state={state} />
+          <TripComparison state={state} />
+          <BreakEvenChart state={state} years={20} />
+          <Transport resortIndex={state.resortIndex} />
+          <HolidayCalendar />
+        </div>
+      </div>
     </div>
   );
 }

@@ -19,9 +19,9 @@ export function Transport({ resortIndex }: Props) {
   const info = (transportToParks.resorts as Record<string, { primary: Record<string, string>; bus: string[]; notes: string }>)[chart.resort];
 
   return (
-    <section>
+    <div className="card">
       <h2>Getting to the parks</h2>
-      <p className="muted">
+      <p className="card-desc">
         Disney's rule: if a resort has a direct route (monorail/Skyliner/boat/walking) to a
         park, there's no bus to that same park - bus is either the only option, or a backup
         when the direct route is down.
@@ -48,21 +48,19 @@ export function Transport({ resortIndex }: Props) {
               ))}
             </tbody>
           </table>
-          <p className="muted">{info.notes}</p>
+          <p className="field-hint">{info.notes}</p>
           {transportToParks.currentDisruptions.length > 0 && (
             <details>
               <summary className="muted">Current known disruptions</summary>
-              <ul>
+              <ul className="disruption-list">
                 {transportToParks.currentDisruptions.map((d) => (
-                  <li key={d} className="muted">
-                    {d}
-                  </li>
+                  <li key={d}>{d}</li>
                 ))}
               </ul>
             </details>
           )}
         </>
       )}
-    </section>
+    </div>
   );
 }

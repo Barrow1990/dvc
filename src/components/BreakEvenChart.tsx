@@ -1,6 +1,6 @@
+import { useState } from "react";
 import {
   CartesianGrid,
-  Legend,
   Line,
   LineChart,
   ResponsiveContainer,
@@ -26,9 +26,27 @@ interface Props {
   years: number;
 }
 
+const gbp = (n: number) => `£${n.toLocaleString(undefined, { maximumFractionDigits: 0 })}`;
+
+function endLabel(color: string, lastIndex: number) {
+  // recharts' own label-render prop type is broader (RenderableText) than what it
+  // actually passes at runtime for a Line - narrowed with Number()/index check
+  // rather than fighting the library's types with an exact interface.
+  return (props: Record<string, unknown>) => {
+    const { x, y, index, value } = props;
+    if (index !== lastIndex || x === undefined || y === undefined) return <g />;
+    return (
+      <text x={Number(x) + 8} y={Number(y)} dy={4} fill={color} fontSize={12} fontWeight={600}>
+        {gbp(Number(value ?? 0))}
+      </text>
+    );
+  };
+}
+
 export function BreakEvenChart({ state, years }: Props) {
   const chart = pointsCharts[state.resortIndex];
   const partySize = state.adults + state.children;
+  const [showTable, setShowTable] = useState(false);
 
   let dvc;
   try {
@@ -83,11 +101,12 @@ export function BreakEvenChart({ state, years }: Props) {
 
   const points = calculateBreakEven(purchaseCostGbp, annualRecurringGbp, packageAnnualGbp, years);
   const breakEvenYear = findBreakEvenYear(points);
+  const lastIndex = points.length - 1;
 
   return (
-    <section>
+    <div className="card">
       <h2>Break-even over time</h2>
-      <p className="muted">
+      <p className="card-desc">
         Cumulative cost of buying DVC (one-time purchase, plus dues + flights + tickets paid
         every year, less the Blue Card discount if buying direct) vs. always booking the
         package holiday instead, assuming this exact trip every year, all converted to GBP.{" "}
@@ -95,19 +114,97 @@ export function BreakEvenChart({ state, years }: Props) {
           ? `Break-even at year ${breakEvenYear}.`
           : `DVC doesn't break even within ${years} years at these assumptions.`}
       </p>
-      <ResponsiveContainer width="100%" height={320}>
-        <LineChart data={points}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="year" label={{ value: "Years of ownership", position: "insideBottom", offset: -5 }} />
-          <YAxis tickFormatter={(v) => `£${(v / 1000).toFixed(0)}k`} />
-          <Tooltip
-            formatter={(v) => `£${Number(v).toLocaleString(undefined, { maximumFractionDigits: 0 })}`}
-          />
-          <Legend />
-          <Line type="monotone" dataKey="cumulativeDvcCost" name="DVC (cumulative)" stroke="#8884d8" strokeWidth={2} />
-          <Line type="monotone" dataKey="cumulativePackageCost" name="Package holiday (cumulative)" stroke="#82ca9d" strokeWidth={2} />
-        </LineChart>
-      </ResponsiveContainer>
-    </section>
+
+      <div className="chart-legend" role="list">
+        <span role="listitem">
+          <span className="swatch" style={{ background: "var(--series-dvc)" }} />
+          DVC (cumulative)
+        </span>
+        <span role="listitem">
+          <span className="swatch" style={{ background: "var(--series-package)" }} />
+          Package holiday (cumulative)
+        </span>
+      </div>
+
+      {!showTable ? (
+        <ResponsiveContainer width="100%" height={340}>
+          <LineChart data={points} margin={{ top: 12, right: 64, left: 8, bottom: 8 }}>
+            <CartesianGrid stroke="var(--gridline)" strokeDasharray="0" vertical={false} />
+            <XAxis
+              dataKey="year"
+              stroke="var(--baseline)"
+              tick={{ fill: "var(--text-muted)", fontSize: 12 }}
+              tickLine={false}
+              label={{
+                value: "Years of ownership",
+                position: "insideBottom",
+                offset: -4,
+                fill: "var(--text-muted)",
+                fontSize: 12,
+              }}
+            />
+            <YAxis
+              tickFormatter={(v) => `£${(v / 1000).toFixed(0)}k`}
+              stroke="var(--baseline)"
+              tick={{ fill: "var(--text-muted)", fontSize: 12 }}
+              tickLine={false}
+            />
+            <Tooltip
+              contentStyle={{
+                background: "var(--surface-card)",
+                border: "1px solid var(--border)",
+                borderRadius: 8,
+                fontSize: 12,
+              }}
+              labelStyle={{ color: "var(--text-primary)" }}
+              formatter={(v) => gbp(Number(v))}
+            />
+            <Line
+              type="monotone"
+              dataKey="cumulativeDvcCost"
+              name="DVC (cumulative)"
+              stroke="var(--series-dvc)"
+              strokeWidth={2}
+              dot={{ r: 4, strokeWidth: 2, stroke: "var(--surface-card)", fill: "var(--series-dvc)" }}
+              activeDot={{ r: 5, strokeWidth: 2, stroke: "var(--surface-card)" }}
+              label={endLabel("var(--series-dvc)", lastIndex) as never}
+            />
+            <Line
+              type="monotone"
+              dataKey="cumulativePackageCost"
+              name="Package holiday (cumulative)"
+              stroke="var(--series-package)"
+              strokeWidth={2}
+              dot={{ r: 4, strokeWidth: 2, stroke: "var(--surface-card)", fill: "var(--series-package)" }}
+              activeDot={{ r: 5, strokeWidth: 2, stroke: "var(--surface-card)" }}
+              label={endLabel("var(--series-package)", lastIndex) as never}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      ) : (
+        <table>
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th className="num">DVC cumulative</th>
+              <th className="num">Package cumulative</th>
+            </tr>
+          </thead>
+          <tbody>
+            {points.map((p) => (
+              <tr key={p.year}>
+                <td>{p.year}</td>
+                <td className="num">{gbp(p.cumulativeDvcCost)}</td>
+                <td className="num">{gbp(p.cumulativePackageCost)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+
+      <button type="button" className="table-view-toggle" onClick={() => setShowTable((v) => !v)}>
+        {showTable ? "Show chart" : "Show table"}
+      </button>
+    </div>
   );
 }

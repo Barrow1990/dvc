@@ -78,9 +78,9 @@ export function TripComparison({ state }: Props) {
   });
 
   return (
-    <section>
+    <div className="card">
       <h2>Trip comparison</h2>
-      <p className="muted">
+      <p className="card-desc">
         Both columns are "everything included" - accommodation, flights, and park tickets.
         Package figures scale the sourced 14-night per-person range linearly to your trip
         length; ticket prices are Disney's UK-exclusive 14-Day Magic Ticket, buyable
@@ -96,42 +96,46 @@ export function TripComparison({ state }: Props) {
             <thead>
               <tr>
                 <th></th>
-                <th>DVC (this trip, amortized)</th>
-                <th>UK package holiday</th>
+                <th className="num" style={{ color: "var(--series-dvc)" }}>
+                  DVC (amortized)
+                </th>
+                <th className="num" style={{ color: "var(--series-package)" }}>
+                  UK package
+                </th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>Accommodation</td>
-                <td>{gbp(full.totals.accommodationGbp)}</td>
+                <td className="num">{gbp(full.totals.accommodationGbp)}</td>
                 <td rowSpan={5} className="muted">
                   Bundled - not broken out per component
                 </td>
               </tr>
               <tr>
                 <td>Flights</td>
-                <td>{gbp(full.flightsCost.totalGbp)}</td>
+                <td className="num">{gbp(full.flightsCost.totalGbp)}</td>
               </tr>
               <tr>
                 <td>Park tickets</td>
-                <td>{gbp(full.ticketsCost.totalGbp)}</td>
+                <td className="num">{gbp(full.ticketsCost.totalGbp)}</td>
               </tr>
               <tr>
                 <td>Blue Card discount{full.blueCardEligible ? "" : " (not eligible)"}</td>
-                <td>−{gbp(full.totals.blueCardDiscountGbp)}</td>
+                <td className="num">−{gbp(full.totals.blueCardDiscountGbp)}</td>
               </tr>
               <tr>
                 <td>
                   <strong>Total, this trip</strong>
                 </td>
-                <td>
+                <td className="num">
                   <strong>{gbp(full.totals.totalGbp)}</strong>
                 </td>
               </tr>
               <tr>
                 <td></td>
                 <td></td>
-                <td>
+                <td className="num">
                   <strong>
                     {gbp(pkg.totalLowGbp)}–{gbp(pkg.totalHighGbp)}
                   </strong>
@@ -141,6 +145,6 @@ export function TripComparison({ state }: Props) {
           </table>
         )
       )}
-    </section>
+    </div>
   );
 }
