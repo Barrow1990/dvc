@@ -1,0 +1,85 @@
+{
+  "resort": "Hilton Head Island Resort",
+  "tier": "value",
+  "source": "https://dvctripplanner.com/resort/disneys-hilton-head-island-resort",
+  "fetchedAt": "2026-08-08",
+  "note": "Points required per night. Source gave Sun-Thu/Fri-Sat pairs, no weekly total - nightly average computed as (5*SunThu + 2*FriSat)/7. Only one view category shown (mapped to 'standard'). Not a Walt Disney World resort - no direct park access at all, see transport notes.",
+  "seasons": [
+    {
+      "name": "Value",
+      "dateRanges": [
+        "Jan 1-31",
+        "Dec 1-17"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 7.71
+        },
+        "oneBedroom": {
+          "standard": 15.43
+        },
+        "twoBedroom": {
+          "standard": 20.86
+        },
+        "threeBedroom": 30.43
+      }
+    },
+    {
+      "name": "Regular",
+      "dateRanges": [
+        "Feb 1-Mar 31",
+        "Nov 1-30",
+        "Dec 18-31"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 11.43
+        },
+        "oneBedroom": {
+          "standard": 22.57
+        },
+        "twoBedroom": {
+          "standard": 27.43
+        },
+        "threeBedroom": 50.71
+      }
+    },
+    {
+      "name": "Peak",
+      "dateRanges": [
+        "Apr 1-Jun 10",
+        "Aug 28-Oct 31"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 16.57
+        },
+        "oneBedroom": {
+          "standard": 31.86
+        },
+        "twoBedroom": {
+          "standard": 39.57
+        },
+        "threeBedroom": 69.29
+      }
+    },
+    {
+      "name": "Summer",
+      "dateRanges": [
+        "Jun 11-Aug 27"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 18.43
+        },
+        "oneBedroom": {
+          "standard": 37.0
+        },
+        "twoBedroom": {
+          "standard": 48.14
+        },
+        "threeBedroom": 82.43
+      }
+    }
+  ]
+}

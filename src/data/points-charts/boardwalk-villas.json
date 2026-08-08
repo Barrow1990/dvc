@@ -1,0 +1,128 @@
+{
+  "resort": "BoardWalk Villas",
+  "tier": "deluxe",
+  "source": "https://dvctripplanner.com/resort/disneys-boardwalk-villas",
+  "fetchedAt": "2026-08-08",
+  "note": "Points required per night (Resort View / Boardwalk-Preferred View), direct nightly values per the source. 2-bedroom and 3-bedroom grand villa deliberately excluded - the source extraction's figures for those didn't scale consistently with every other resort's studio->1BR->2BR pattern verified in this dataset, so they were dropped rather than risk a wrong number. Re-verify from a primary source (e.g. an official Disney prospectus PDF) before relying on 2BR/3BR pricing here.",
+  "seasons": [
+    {
+      "name": "September",
+      "dateRanges": [
+        "Sep 1-30"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 10,
+          "preferred": 14
+        },
+        "oneBedroom": {
+          "standard": 13,
+          "preferred": 16
+        }
+      }
+    },
+    {
+      "name": "January & Early May",
+      "dateRanges": [
+        "Jan 1-31",
+        "May 1-14"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 10,
+          "preferred": 15
+        },
+        "oneBedroom": {
+          "standard": 14,
+          "preferred": 16
+        }
+      }
+    },
+    {
+      "name": "Late May & Early December",
+      "dateRanges": [
+        "May 15-Jun 10",
+        "Dec 1-23"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 11,
+          "preferred": 16
+        },
+        "oneBedroom": {
+          "standard": 15,
+          "preferred": 17
+        }
+      }
+    },
+    {
+      "name": "February & Summer",
+      "dateRanges": [
+        "Feb 1-15",
+        "Jun 11-Aug 31"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 11,
+          "preferred": 16
+        },
+        "oneBedroom": {
+          "standard": 16,
+          "preferred": 18
+        }
+      }
+    },
+    {
+      "name": "Fall",
+      "dateRanges": [
+        "Oct 1-Nov 23",
+        "Nov 27-30"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 14,
+          "preferred": 18
+        },
+        "oneBedroom": {
+          "standard": 16,
+          "preferred": 20
+        }
+      }
+    },
+    {
+      "name": "Spring Break / Thanksgiving",
+      "dateRanges": [
+        "Feb 16-Mar 20",
+        "Mar 29-Apr 30",
+        "Nov 24-26"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 15,
+          "preferred": 19
+        },
+        "oneBedroom": {
+          "standard": 19,
+          "preferred": 22
+        }
+      }
+    },
+    {
+      "name": "Highest Demand",
+      "dateRanges": [
+        "Mar 21-28",
+        "Dec 24-31"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 22,
+          "preferred": 28
+        },
+        "oneBedroom": {
+          "standard": 24,
+          "preferred": 29
+        }
+      }
+    }
+  ]
+}

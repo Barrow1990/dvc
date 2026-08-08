@@ -1,0 +1,104 @@
+{
+  "resort": "Aulani",
+  "tier": "deluxe",
+  "source": "https://dvctripplanner.com/resort/aulani-disney-vacation-club-villas-ko-olina-hawaii",
+  "fetchedAt": "2026-08-08",
+  "note": "Points required per night, direct nightly values (Hawaii-specific calendar, different from the standard Orlando season dates used elsewhere in this dataset). 'standard'/'preferred' here map to Aulani's real 'Standard View'/'Ocean View' - two intermediate tiers (Island Garden View, Poolside Garden View) exist and aren't modeled. The Hotel Room category (no kitchen) is also excluded as not comparable to a studio villa elsewhere.",
+  "seasons": [
+    {
+      "name": "Value",
+      "dateRanges": [
+        "Jan 3-Feb 27",
+        "Sep 5-Oct 9",
+        "Nov 10-22",
+        "Nov 28-Dec 23"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 17,
+          "preferred": 25
+        },
+        "oneBedroom": {
+          "standard": 34,
+          "preferred": 46
+        },
+        "twoBedroom": {
+          "standard": 47,
+          "preferred": 62
+        },
+        "threeBedroom": 122
+      }
+    },
+    {
+      "name": "Regular",
+      "dateRanges": [
+        "Apr 4-28",
+        "May 6-Jun 27",
+        "Oct 10-Nov 9"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 19,
+          "preferred": 26
+        },
+        "oneBedroom": {
+          "standard": 37,
+          "preferred": 50
+        },
+        "twoBedroom": {
+          "standard": 51,
+          "preferred": 69
+        },
+        "threeBedroom": 134
+      }
+    },
+    {
+      "name": "Peak",
+      "dateRanges": [
+        "Feb 28-Mar 18",
+        "Apr 29-May 5",
+        "Aug 9-Sep 4"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 22,
+          "preferred": 29
+        },
+        "oneBedroom": {
+          "standard": 44,
+          "preferred": 58
+        },
+        "twoBedroom": {
+          "standard": 60,
+          "preferred": 79
+        },
+        "threeBedroom": 157
+      }
+    },
+    {
+      "name": "Holiday",
+      "dateRanges": [
+        "Jan 1-2",
+        "Mar 19-Apr 3",
+        "Jun 28-Aug 8",
+        "Nov 23-27",
+        "Dec 24-31"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 24,
+          "preferred": 31
+        },
+        "oneBedroom": {
+          "standard": 46,
+          "preferred": 62
+        },
+        "twoBedroom": {
+          "standard": 64,
+          "preferred": 84
+        },
+        "threeBedroom": 184
+      }
+    }
+  ]
+}

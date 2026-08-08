@@ -1,0 +1,96 @@
+{
+  "source": "https://disneyworld.disney.go.com/guest-services/resort-transportation/, cross-checked against general Disney World transportation structure (monorail loop, Skyliner network, EPCOT-area walking/boat, Disney Springs boat) plus a live-status check (2026-08-08) for current disruptions.",
+  "fetchedAt": "2026-08-08",
+  "note": "Disney's real rule: if a resort has monorail/Skyliner/boat/walking access to a park, there's no bus to that same park - buses only run where no direct route exists, or as backup when the primary system is down. 'Primary' below is the direct, no-transfer mode; everything else from that resort is bus. This is real infrastructure, not investment-relevant, but genuinely affects day-to-day trip quality - a bus-only resort can mean 20-45 min each way including wait/loading vs a 5-10 min monorail/Skyliner/walk.",
+  "currentDisruptions": [
+    "Old Key West <-> Disney Springs boat paused since 2026-07-20 for refurbishment (no confirmed resume date as of fetch) - bus substituted meanwhile.",
+    "Skyliner scheduled to close entirely for annual refurbishment 2027-01-24 to 2027-01-30 (affects Riviera + 3 non-DVC resorts) - bus substituted during that window."
+  ],
+  "resorts": {
+    "Bay Lake Tower": {
+      "primary": { "Magic Kingdom": "monorail or walking path" },
+      "bus": ["EPCOT", "Hollywood Studios", "Animal Kingdom", "Disney Springs"],
+      "notes": "Closest DVC resort to Magic Kingdom - walking is genuinely viable, not just the monorail."
+    },
+    "Grand Floridian Villas": {
+      "primary": { "Magic Kingdom": "monorail", "EPCOT": "monorail (transfer at Ticket and Transportation Center)" },
+      "bus": ["Hollywood Studios", "Animal Kingdom", "Disney Springs"],
+      "notes": "EPCOT via monorail needs a transfer, not a direct one-seat ride."
+    },
+    "Polynesian Villas & Bungalows": {
+      "primary": { "Magic Kingdom": "monorail", "EPCOT": "monorail (transfer at Ticket and Transportation Center)" },
+      "bus": ["Hollywood Studios", "Animal Kingdom", "Disney Springs"],
+      "notes": "Same monorail-loop position as Grand Floridian."
+    },
+    "Boulder Ridge Villas": {
+      "primary": { "Magic Kingdom": "boat" },
+      "bus": ["EPCOT", "Hollywood Studios", "Animal Kingdom", "Disney Springs"],
+      "notes": "Wilderness Lodge boat launch."
+    },
+    "Copper Creek Villas & Cabins": {
+      "primary": { "Magic Kingdom": "boat" },
+      "bus": ["EPCOT", "Hollywood Studios", "Animal Kingdom", "Disney Springs"],
+      "notes": "Same Wilderness Lodge boat launch as Boulder Ridge."
+    },
+    "Cabins at Fort Wilderness": {
+      "primary": { "Magic Kingdom": "boat" },
+      "bus": ["EPCOT", "Hollywood Studios", "Animal Kingdom", "Disney Springs"],
+      "notes": "Internal resort bus/boat loop to reach the Magic Kingdom boat dock or bus depot first - more steps than other Magic Kingdom-area resorts."
+    },
+    "BoardWalk Villas": {
+      "primary": { "EPCOT": "walking or boat (International Gateway)", "Hollywood Studios": "walking or boat" },
+      "bus": ["Magic Kingdom", "Animal Kingdom", "Disney Springs"],
+      "notes": "Walking to EPCOT/Hollywood Studios is genuinely fast (10-20 min) - a real practical perk for park-hopping between those two."
+    },
+    "Beach Club Villas": {
+      "primary": { "EPCOT": "walking or boat (International Gateway)", "Hollywood Studios": "walking or boat" },
+      "bus": ["Magic Kingdom", "Animal Kingdom", "Disney Springs"],
+      "notes": "Same EPCOT-area walking/boat position as BoardWalk."
+    },
+    "Riviera Resort": {
+      "primary": { "EPCOT": "Skyliner (International Gateway)", "Hollywood Studios": "Skyliner" },
+      "bus": ["Magic Kingdom", "Animal Kingdom", "Disney Springs"],
+      "notes": "Skyliner has real weather-related downtime (closes for lightning/high wind) - bus substitutes when that happens. Scheduled to close entirely 2027-01-24 to 2027-01-30 for annual refurbishment."
+    },
+    "Animal Kingdom Villas": {
+      "primary": {},
+      "bus": ["Magic Kingdom", "EPCOT", "Hollywood Studios", "Animal Kingdom", "Disney Springs"],
+      "notes": "Bus-only to every park, including Animal Kingdom itself (no walking path despite being on the same property) - the one deluxe WDW resort with no direct/express mode to anywhere."
+    },
+    "Saratoga Springs": {
+      "primary": { "Disney Springs": "boat or walking (from some sections)" },
+      "bus": ["Magic Kingdom", "EPCOT", "Hollywood Studios", "Animal Kingdom"],
+      "notes": "Bus-only to all 4 theme parks - Disney Springs is the only direct-access destination."
+    },
+    "Old Key West Resort": {
+      "primary": { "Disney Springs": "boat" },
+      "bus": ["Magic Kingdom", "EPCOT", "Hollywood Studios", "Animal Kingdom"],
+      "notes": "Bus-only to all 4 theme parks. The Disney Springs boat is currently suspended for refurbishment since 2026-07-20 - see currentDisruptions."
+    },
+    "Grand Californian Villas": {
+      "primary": { "Disneyland Park": "walking (direct entrance)", "Disney California Adventure": "walking (direct entrance)" },
+      "bus": [],
+      "notes": "Disneyland Resort, not Walt Disney World - has its own private entrance directly into California Adventure, and Disneyland Park is a short walk. No bus system needed/used at this resort."
+    },
+    "Disneyland Hotel Villas": {
+      "primary": { "Disneyland Park": "walking (~10 min) or monorail", "Disney California Adventure": "walking (~10 min)" },
+      "bus": [],
+      "notes": "Disneyland Resort - the monorail has a station at this hotel with a stop inside Disneyland Park."
+    },
+    "Aulani": {
+      "primary": {},
+      "bus": [],
+      "notes": "Not a Walt Disney World or Disneyland resort - Ko Olina, Oahu, Hawaii. No theme park transport applies at all; this is a standalone beach resort with its own water features. A trip here doesn't combine with WDW/DL parks in the same visit without separately flying to Orlando/Anaheim."
+    },
+    "Hilton Head Island Resort": {
+      "primary": {},
+      "bus": [],
+      "notes": "Not near any Disney theme park - South Carolina, ~6-7 hours' drive from Walt Disney World. No park transport applies at all."
+    },
+    "Vero Beach": {
+      "primary": {},
+      "bus": [],
+      "notes": "Not near any Disney theme park - Florida's Atlantic coast, ~2-2.5 hours' drive from Walt Disney World. No park transport applies at all."
+    }
+  }
+}

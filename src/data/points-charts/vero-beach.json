@@ -1,0 +1,74 @@
+{
+  "resort": "Vero Beach",
+  "tier": "value",
+  "source": "https://dvctripplanner.com/resort/disneys-vero-beach-resort",
+  "fetchedAt": "2026-08-08",
+  "note": "Points required per night, direct nightly Deluxe Studio values only ('standard'/'preferred' map to Standard View/Ocean View). 1-bedroom/2-bedroom/3-bedroom and the Deluxe Inn (hotel-room-only, no kitchen) deliberately excluded - the source extraction's figures for those jumped implausibly against the studio, likely a table-parsing error; re-verify from a primary source before relying on them. Not a Walt Disney World resort - no direct park access at all, see transport notes.",
+  "seasons": [
+    {
+      "name": "Value",
+      "dateRanges": [
+        "Sep 1-Nov 23"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 16,
+          "preferred": 17
+        }
+      }
+    },
+    {
+      "name": "Moderate",
+      "dateRanges": [
+        "May 1-31",
+        "Nov 27-Dec 23"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 17,
+          "preferred": 19
+        }
+      }
+    },
+    {
+      "name": "Regular",
+      "dateRanges": [
+        "Jan 1-31",
+        "Jun 1-Aug 31",
+        "Nov 24-26"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 17,
+          "preferred": 21
+        }
+      }
+    },
+    {
+      "name": "Peak",
+      "dateRanges": [
+        "Feb 1-13",
+        "Apr 4-30"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 20,
+          "preferred": 23
+        }
+      }
+    },
+    {
+      "name": "Holiday",
+      "dateRanges": [
+        "Feb 14-Apr 3",
+        "Dec 24-31"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 27,
+          "preferred": 31
+        }
+      }
+    }
+  ]
+}

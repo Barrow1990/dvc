@@ -25,6 +25,12 @@ directly as your thinking (or the real numbers) change.
   always booking the package, over an editable number of years
 - **Real school holiday windows** — Moorland School's actual term dates,
   since travel is constrained to those anyway
+- **All 17 DVC resorts** — real dues, direct price, and a points chart for
+  every resort (some with known gaps, see `DATA_SOURCES.md`'s "Points
+  chart data quality" section)
+- **Transport to the parks** — real mode(s) (monorail/Skyliner/boat/
+  walking/bus) from every resort to every park it can reach, shown per
+  resort - informational, not part of any cost calculation
 
 ## Known simplifications in what IS modeled
 
@@ -123,12 +129,13 @@ directly as your thinking (or the real numbers) change.
 
 ## Open decisions only you can make
 
-- **Which resort(s)** to seriously consider — only 3 have real points-
-  chart data modeled so far (Saratoga Springs, Animal Kingdom Villas,
-  Polynesian Villas & Bungalows). Tell me which others to add - an
-  official Disney sales prospectus PDF (like the one that seeded
-  Polynesian's real price/dues/expiration/closing-cost data) is the
-  best source if you can get one for a resort you're considering.
+- **Which resort(s)** to seriously consider — all 17 real DVC resorts now
+  have data modeled (2026-08-08), including transport to the parks. A
+  few resorts have known room-type gaps (see `DATA_SOURCES.md`'s "Points
+  chart data quality") - an official Disney sales prospectus PDF (like
+  the one that seeded Polynesian's real price/dues/expiration/closing-
+  cost data) is the best way to fill those in or verify a resort you're
+  seriously considering.
 - **Realistic annual trip pattern** (nights, room type, season) to size
   the points purchase around — the app currently uses whatever's typed
   into Assumptions, not a settled real plan.

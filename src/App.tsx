@@ -4,19 +4,22 @@ import { Assumptions, type AssumptionsState } from "./components/Assumptions";
 import { TripComparison } from "./components/TripComparison";
 import { BreakEvenChart } from "./components/BreakEvenChart";
 import { HolidayCalendar } from "./components/HolidayCalendar";
-import { dues, directPrices, fxRate } from "./lib/data";
+import { Transport } from "./components/Transport";
+import { dues, directPrices, fxRate, pointsCharts } from "./lib/data";
+
+const DEFAULT_RESORT = "Saratoga Springs";
 
 const defaultState: AssumptionsState = {
-  resortIndex: 0,
+  resortIndex: pointsCharts.findIndex((c) => c.resort === DEFAULT_RESORT),
   seasonName: "Peak Season",
   roomType: "studio",
   view: "standard",
   nights: 7,
   adults: 2,
   children: 1,
-  duesPerPoint: dues.duesPerPoint["Saratoga Springs"],
+  duesPerPoint: dues.duesPerPoint[DEFAULT_RESORT],
   purchaseType: "direct",
-  purchasePricePerPoint: directPrices.generalRange.low,
+  purchasePricePerPoint: directPrices.perPointByResort[DEFAULT_RESORT],
   amortizationYears: 15,
   packageTier: "Moderate resort",
   usdToGbpRate: fxRate.usdToGbp,
@@ -44,6 +47,7 @@ function App() {
       <Assumptions state={state} onChange={setState} />
       <TripComparison state={state} />
       <BreakEvenChart state={state} years={20} />
+      <Transport resortIndex={state.resortIndex} />
       <HolidayCalendar />
     </div>
   );

@@ -1,0 +1,163 @@
+{
+  "resort": "Bay Lake Tower",
+  "tier": "deluxe",
+  "source": "https://dvctripplanner.com/resort/bay-lake-tower-at-disneys-contemporary-resort",
+  "fetchedAt": "2026-08-08",
+  "note": "Points required per night - source table gave direct nightly R(esort)/P(referred) view values, not a day-of-week split. Theme Park View (TP, studio/1BR/2BR) and the 3BR's Resort-View option omitted - not part of this app's view schema (standard/preferred only).",
+  "seasons": [
+    {
+      "name": "September",
+      "dateRanges": [
+        "Sep 1-30"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 13,
+          "preferred": 16
+        },
+        "oneBedroom": {
+          "standard": 24,
+          "preferred": 29
+        },
+        "twoBedroom": {
+          "standard": 35,
+          "preferred": 38
+        },
+        "threeBedroom": 82
+      }
+    },
+    {
+      "name": "January & Early May",
+      "dateRanges": [
+        "Jan 1-31",
+        "May 1-14"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 15,
+          "preferred": 18
+        },
+        "oneBedroom": {
+          "standard": 28,
+          "preferred": 33
+        },
+        "twoBedroom": {
+          "standard": 40,
+          "preferred": 43
+        },
+        "threeBedroom": 88
+      }
+    },
+    {
+      "name": "Late May & Early December",
+      "dateRanges": [
+        "May 15-Jun 10",
+        "Dec 1-23"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 16,
+          "preferred": 19
+        },
+        "oneBedroom": {
+          "standard": 30,
+          "preferred": 35
+        },
+        "twoBedroom": {
+          "standard": 42,
+          "preferred": 46
+        },
+        "threeBedroom": 96
+      }
+    },
+    {
+      "name": "February & Summer",
+      "dateRanges": [
+        "Feb 1-15",
+        "Jun 11-Aug 31"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 17,
+          "preferred": 19
+        },
+        "oneBedroom": {
+          "standard": 31,
+          "preferred": 36
+        },
+        "twoBedroom": {
+          "standard": 43,
+          "preferred": 47
+        },
+        "threeBedroom": 100
+      }
+    },
+    {
+      "name": "Fall",
+      "dateRanges": [
+        "Oct 1-Nov 23",
+        "Nov 27-30"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 18,
+          "preferred": 20
+        },
+        "oneBedroom": {
+          "standard": 33,
+          "preferred": 38
+        },
+        "twoBedroom": {
+          "standard": 45,
+          "preferred": 50
+        },
+        "threeBedroom": 108
+      }
+    },
+    {
+      "name": "Spring Break / Thanksgiving",
+      "dateRanges": [
+        "Feb 16-Mar 20",
+        "Mar 29-Apr 30",
+        "Nov 24-26"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 19,
+          "preferred": 21
+        },
+        "oneBedroom": {
+          "standard": 36,
+          "preferred": 42
+        },
+        "twoBedroom": {
+          "standard": 50,
+          "preferred": 54
+        },
+        "threeBedroom": 120
+      }
+    },
+    {
+      "name": "Highest Demand",
+      "dateRanges": [
+        "Mar 21-28",
+        "Dec 24-31"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 26,
+          "preferred": 28
+        },
+        "oneBedroom": {
+          "standard": 48,
+          "preferred": 53
+        },
+        "twoBedroom": {
+          "standard": 66,
+          "preferred": 72
+        },
+        "threeBedroom": 146
+      }
+    }
+  ]
+}

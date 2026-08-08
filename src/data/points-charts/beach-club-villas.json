@@ -1,0 +1,135 @@
+{
+  "resort": "Beach Club Villas",
+  "tier": "deluxe",
+  "source": "https://dvctripplanner.com/resort/disneys-beach-club-villas",
+  "fetchedAt": "2026-08-08",
+  "note": "Points required per night. Source chart splits by day-of-week (Sun-Thu vs Fri-Sat) - values below are each season's published 7-night weekly total divided by 7, a nightly average, not the real per-night figure (cheaper weeknights, pricier Fri/Sat). Only one view category shown in the source (mapped to 'standard'). No 3-bedroom/grand villa at this resort.",
+  "seasons": [
+    {
+      "name": "September",
+      "dateRanges": [
+        "Sep 1-30"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 14.29
+        },
+        "oneBedroom": {
+          "standard": 27.43
+        },
+        "twoBedroom": {
+          "standard": 38.0
+        }
+      }
+    },
+    {
+      "name": "January & Early May",
+      "dateRanges": [
+        "Jan 1-31",
+        "May 1-14"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 15.29
+        },
+        "oneBedroom": {
+          "standard": 30.14
+        },
+        "twoBedroom": {
+          "standard": 39.71
+        }
+      }
+    },
+    {
+      "name": "Late May & Early December",
+      "dateRanges": [
+        "May 15-Jun 10",
+        "Dec 1-23"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 16.29
+        },
+        "oneBedroom": {
+          "standard": 32.43
+        },
+        "twoBedroom": {
+          "standard": 42.43
+        }
+      }
+    },
+    {
+      "name": "February & Summer",
+      "dateRanges": [
+        "Feb 1-15",
+        "Jun 11-Aug 31"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 16.57
+        },
+        "oneBedroom": {
+          "standard": 35.86
+        },
+        "twoBedroom": {
+          "standard": 44.86
+        }
+      }
+    },
+    {
+      "name": "Fall",
+      "dateRanges": [
+        "Oct 1-Nov 23",
+        "Nov 27-30"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 18.14
+        },
+        "oneBedroom": {
+          "standard": 36.86
+        },
+        "twoBedroom": {
+          "standard": 47.71
+        }
+      }
+    },
+    {
+      "name": "Spring Break / Thanksgiving",
+      "dateRanges": [
+        "Feb 16-Mar 20",
+        "Mar 29-Apr 30",
+        "Nov 24-26"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 19.14
+        },
+        "oneBedroom": {
+          "standard": 38.43
+        },
+        "twoBedroom": {
+          "standard": 50.0
+        }
+      }
+    },
+    {
+      "name": "Highest Demand",
+      "dateRanges": [
+        "Mar 21-28",
+        "Dec 24-31"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 27.29
+        },
+        "oneBedroom": {
+          "standard": 52.43
+        },
+        "twoBedroom": {
+          "standard": 68.86
+        }
+      }
+    }
+  ]
+}

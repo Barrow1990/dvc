@@ -1,14 +1,24 @@
 {
-  "source": "https://www.dvcresalemarket.com/blog/2026-disney-vacation-club-annual-dues/, https://dvcfan.com/news/2026-disney-vacation-club-annual-dues/. Polynesian Villas & Bungalows confirmed 2026-08-08 against an official Disney sales prospectus PDF (user-provided).",
-  "fetchedAt": "2026-08-06",
-  "note": "2026 billing year, USD per point. Blended increase of 6.38% across all resorts vs 2025. WDW average $9.61/point; Beach resorts average $12.90/point; California resorts average $10.03/point.",
+  "source": "https://www.dvcresalemarket.com/blog/2026-disney-vacation-club-annual-dues/, https://dvcsales.com/dvc-annual-dues (cross-checked, both agree). Polynesian Villas & Bungalows also confirmed 2026-08-08 against an official Disney sales prospectus PDF (user-provided): $8.34 there vs $8.33 here, rounding only.",
+  "fetchedAt": "2026-08-08",
+  "note": "2026 billing year, USD per point, full resort list. Blended increase of 6.38% across all resorts vs 2025. CORRECTION 2026-08-08: Saratoga Springs was previously recorded here as $7.42/point - that was wrong (source unclear, possibly a stale/different year figure). Real 2026 rate is $9.19/point, confirmed against two independent sources. Vero Beach has two real dues tiers depending on original purchase date (before/after 1996-01-01) - the figure below is the more common 'on or after' rate.",
   "duesPerPoint": {
     "Grand Floridian Villas": 8.31,
+    "Polynesian Villas & Bungalows": 8.33,
     "Bay Lake Tower": 8.74,
-    "Saratoga Springs": 7.42,
-    "Animal Kingdom Villas": 10.16,
+    "Copper Creek Villas & Cabins": 9.02,
+    "Saratoga Springs": 9.19,
+    "Riviera Resort": 9.46,
     "Grand Californian Villas": 9.52,
-    "Vero Beach": 14.89,
-    "Polynesian Villas & Bungalows": 8.34
+    "BoardWalk Villas": 9.67,
+    "Boulder Ridge Villas": 9.77,
+    "Beach Club Villas": 9.81,
+    "Animal Kingdom Villas": 10.16,
+    "Disneyland Hotel Villas": 10.54,
+    "Aulani": 10.96,
+    "Old Key West Resort": 11.21,
+    "Cabins at Fort Wilderness": 12.28,
+    "Hilton Head Island Resort": 12.86,
+    "Vero Beach": 14.89
   }
 }

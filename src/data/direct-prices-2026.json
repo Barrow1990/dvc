@@ -1,13 +1,25 @@
 {
-  "source": "https://www.thetraveler.org/disney-vacation-club-cost-explained-2026-buyers-guide/, https://dvcfan.com/purchasing-dvc/2026-dvc-direct-price-increase/. Polynesian Villas & Bungalows confirmed 2026-08-08 against an official Disney sales prospectus PDF (user-provided) - list price matches exactly at $243/point.",
-  "fetchedAt": "2026-08-06",
-  "note": "USD per point, buying new/direct from Disney. Price increase effective 2026-02-10. General band $215-275/point depending on resort; specific post-increase examples below. Current promotions (e.g. discounts on 200+ point purchases) change independently of list price and aren't reflected here - the official Polynesian prospectus shows a real example: a per-point credit incentive scaling from $5/point at 150 points up to $20/point at 500+ points, e.g. 500 points nets a real $10,000 discount off list. Not modeled in this app's calculator (purchasePricePerPoint is a single flat number), but worth knowing a larger purchase gets genuinely cheaper per point.",
-  "generalRange": { "low": 215, "high": 275 },
+  "source": "https://dvcsales.com/dvc-compare-prices. Polynesian Villas & Bungalows confirmed 2026-08-08 against an official Disney sales prospectus PDF (user-provided) - list price matches exactly at $243/point.",
+  "fetchedAt": "2026-08-08",
+  "note": "USD per point, buying new/direct from Disney. Full resort list, replacing the earlier partial table + generic range. Current promotions (e.g. discounts on 200+ point purchases) change independently of list price and aren't reflected here - the official Polynesian prospectus shows a real example: a per-point credit incentive scaling from $5/point at 150 points up to $20/point at 500+ points, e.g. 500 points nets a real $10,000 discount off list. Not modeled in this app's calculator (purchasePricePerPoint is a single flat number), but worth knowing a larger purchase gets genuinely cheaper per point.",
+  "generalRange": { "low": 150, "high": 310 },
   "perPointByResort": {
+    "Vero Beach": 150,
+    "Hilton Head Island Resort": 165,
+    "Old Key West Resort": 205,
+    "Saratoga Springs": 205,
+    "Animal Kingdom Villas": 210,
+    "Boulder Ridge Villas": 215,
+    "Grand Floridian Villas": 230,
+    "BoardWalk Villas": 240,
+    "Aulani": 243,
+    "Cabins at Fort Wilderness": 243,
     "Polynesian Villas & Bungalows": 243,
     "Riviera Resort": 243,
-    "Cabins at Fort Wilderness": 243,
-    "Aulani": 243,
-    "Villas at Disneyland Hotel": 248
+    "Disneyland Hotel Villas": 248,
+    "Copper Creek Villas & Cabins": 250,
+    "Bay Lake Tower": 275,
+    "Beach Club Villas": 275,
+    "Grand Californian Villas": 310
   }
 }

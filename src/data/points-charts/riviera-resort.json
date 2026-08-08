@@ -1,0 +1,142 @@
+{
+  "resort": "Riviera Resort",
+  "tier": "deluxe",
+  "source": "https://dvctripplanner.com/resort/disneys-riviera-resort",
+  "fetchedAt": "2026-08-08",
+  "note": "Points required per night. Source chart splits by day-of-week (Sun-Thu vs Fri-Sat) - values below are each season's published 7-night weekly total divided by 7, a nightly average, not the real per-night figure (cheaper weeknights, pricier Fri/Sat). The source table's Resort View vs Preferred View columns weren't reliably distinguishable in this extraction, so only one view is modeled (mapped to 'standard') - re-verify Preferred View pricing from a primary source if it matters for your decision. Tower Studio (a distinct, cheaper room type) also exists at this resort and isn't modeled - this app's schema has no slot for it. Riviera is one of the 3 resale-restricted resorts.",
+  "seasons": [
+    {
+      "name": "September",
+      "dateRanges": [
+        "Sep 1-30"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 14.86
+        },
+        "oneBedroom": {
+          "standard": 18.43
+        },
+        "twoBedroom": {
+          "standard": 30.43
+        },
+        "threeBedroom": 38.86
+      }
+    },
+    {
+      "name": "January & Early May",
+      "dateRanges": [
+        "Jan 1-31",
+        "May 1-14"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 16.57
+        },
+        "oneBedroom": {
+          "standard": 20.43
+        },
+        "twoBedroom": {
+          "standard": 35.43
+        },
+        "threeBedroom": 43.57
+      }
+    },
+    {
+      "name": "Late May & Early December",
+      "dateRanges": [
+        "May 15-Jun 10",
+        "Dec 1-23"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 17.57
+        },
+        "oneBedroom": {
+          "standard": 21.71
+        },
+        "twoBedroom": {
+          "standard": 37.0
+        },
+        "threeBedroom": 46.86
+      }
+    },
+    {
+      "name": "February & Summer",
+      "dateRanges": [
+        "Feb 1-15",
+        "Jun 11-Aug 31"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 17.86
+        },
+        "oneBedroom": {
+          "standard": 22.43
+        },
+        "twoBedroom": {
+          "standard": 39.43
+        },
+        "threeBedroom": 50.86
+      }
+    },
+    {
+      "name": "Fall",
+      "dateRanges": [
+        "Oct 1-Nov 23",
+        "Nov 27-30"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 19.86
+        },
+        "oneBedroom": {
+          "standard": 25.14
+        },
+        "twoBedroom": {
+          "standard": 42.14
+        },
+        "threeBedroom": 51.86
+      }
+    },
+    {
+      "name": "Spring Break / Thanksgiving",
+      "dateRanges": [
+        "Feb 16-Mar 20",
+        "Mar 29-Apr 30",
+        "Nov 24-26"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 22.14
+        },
+        "oneBedroom": {
+          "standard": 27.86
+        },
+        "twoBedroom": {
+          "standard": 45.86
+        },
+        "threeBedroom": 55.86
+      }
+    },
+    {
+      "name": "Highest Demand",
+      "dateRanges": [
+        "Mar 21-28",
+        "Dec 24-31"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 29.86
+        },
+        "oneBedroom": {
+          "standard": 36.43
+        },
+        "twoBedroom": {
+          "standard": 60.86
+        },
+        "threeBedroom": 71.71
+      }
+    }
+  ]
+}

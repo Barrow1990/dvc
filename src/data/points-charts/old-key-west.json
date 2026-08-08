@@ -1,0 +1,142 @@
+{
+  "resort": "Old Key West Resort",
+  "tier": "value",
+  "source": "https://dvctripplanner.com/resort/disneys-old-key-west-resort",
+  "fetchedAt": "2026-08-08",
+  "note": "Points required per night. Source gave Sun-Thu/Fri-Sat pairs, no weekly total - nightly average computed as (5*SunThu + 2*FriSat)/7. Only one view category (mapped to 'standard').",
+  "seasons": [
+    {
+      "name": "September",
+      "dateRanges": [
+        "Sep 1-30"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 10.14
+        },
+        "oneBedroom": {
+          "standard": 21.43
+        },
+        "twoBedroom": {
+          "standard": 29.29
+        },
+        "threeBedroom": 48.86
+      }
+    },
+    {
+      "name": "January & Early May",
+      "dateRanges": [
+        "Jan 1-31",
+        "May 1-14"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 11.14
+        },
+        "oneBedroom": {
+          "standard": 23.86
+        },
+        "twoBedroom": {
+          "standard": 32.14
+        },
+        "threeBedroom": 52.57
+      }
+    },
+    {
+      "name": "Late May & Early December",
+      "dateRanges": [
+        "May 15-Jun 10",
+        "Dec 1-23"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 11.43
+        },
+        "oneBedroom": {
+          "standard": 25.86
+        },
+        "twoBedroom": {
+          "standard": 35.14
+        },
+        "threeBedroom": 56.14
+      }
+    },
+    {
+      "name": "February & Summer",
+      "dateRanges": [
+        "Feb 1-15",
+        "Jun 11-Aug 31"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 12.43
+        },
+        "oneBedroom": {
+          "standard": 27.14
+        },
+        "twoBedroom": {
+          "standard": 37.43
+        },
+        "threeBedroom": 59.71
+      }
+    },
+    {
+      "name": "Fall",
+      "dateRanges": [
+        "Oct 1-Nov 23",
+        "Nov 27-30"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 14.14
+        },
+        "oneBedroom": {
+          "standard": 29.71
+        },
+        "twoBedroom": {
+          "standard": 40.43
+        },
+        "threeBedroom": 62.43
+      }
+    },
+    {
+      "name": "Spring Break / Thanksgiving",
+      "dateRanges": [
+        "Feb 16-Mar 20",
+        "Mar 29-Apr 30",
+        "Nov 24-26"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 16.14
+        },
+        "oneBedroom": {
+          "standard": 32.43
+        },
+        "twoBedroom": {
+          "standard": 44.0
+        },
+        "threeBedroom": 69.71
+      }
+    },
+    {
+      "name": "Highest Demand",
+      "dateRanges": [
+        "Mar 21-28",
+        "Dec 24-31"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 23.14
+        },
+        "oneBedroom": {
+          "standard": 42.86
+        },
+        "twoBedroom": {
+          "standard": 59.29
+        },
+        "threeBedroom": 88.86
+      }
+    }
+  ]
+}

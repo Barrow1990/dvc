@@ -1,0 +1,100 @@
+{
+  "resort": "Disneyland Hotel Villas",
+  "tier": "deluxe",
+  "source": "https://dvctripplanner.com/resort/the-villas-at-disneyland-hotel",
+  "fetchedAt": "2026-08-08",
+  "note": "Points required per night, direct nightly Deluxe Studio values only (Disneyland-specific calendar). 1-bedroom/2-bedroom/3-bedroom deliberately excluded - the source extraction's figures for those didn't scale plausibly against the studio (implausible jumps), likely a table-parsing error in this extraction; re-verify from a primary source before relying on them. Duo Studio (a distinct, cheaper room type) also exists and isn't modeled. This resort is one of the 3 resale-restricted resorts.",
+  "seasons": [
+    {
+      "name": "Value",
+      "dateRanges": [
+        "Jan 1-31"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 13,
+          "preferred": 14
+        }
+      }
+    },
+    {
+      "name": "Low",
+      "dateRanges": [
+        "May 1-22",
+        "Aug 16-Sep 15"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 14,
+          "preferred": 15
+        }
+      }
+    },
+    {
+      "name": "Regular",
+      "dateRanges": [
+        "Feb 1-Mar 14",
+        "Sep 16-30"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 15,
+          "preferred": 17
+        }
+      }
+    },
+    {
+      "name": "Peak",
+      "dateRanges": [
+        "May 23-31",
+        "Oct 1-Nov 22",
+        "Nov 27-Dec 17"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 16,
+          "preferred": 17
+        }
+      }
+    },
+    {
+      "name": "High",
+      "dateRanges": [
+        "Jun 1-Aug 15"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 18,
+          "preferred": 20
+        }
+      }
+    },
+    {
+      "name": "Highest",
+      "dateRanges": [
+        "Mar 15-20",
+        "Mar 29-Apr 30"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 19,
+          "preferred": 21
+        }
+      }
+    },
+    {
+      "name": "Holiday",
+      "dateRanges": [
+        "Mar 21-28",
+        "Nov 23-26",
+        "Dec 18-31"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 25,
+          "preferred": 27
+        }
+      }
+    }
+  ]
+}

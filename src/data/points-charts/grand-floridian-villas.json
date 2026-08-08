@@ -1,0 +1,156 @@
+{
+  "resort": "Grand Floridian Villas",
+  "tier": "deluxe",
+  "source": "https://dvctripplanner.com/resort/the-villas-at-disneys-grand-floridian-resort-and-spa",
+  "fetchedAt": "2026-08-08",
+  "note": "Points required per night, direct nightly values per the source (not a weekly/day-of-week split). 'studio' here is the Resort Studio (RS) category specifically - Grand Floridian also has a pricier 'Deluxe Studio' (ST) category not modeled, since this app's schema doesn't have a third studio tier. 1-bedroom Preferred View and 3-bedroom Resort View weren't given in the source ('-').",
+  "seasons": [
+    {
+      "name": "September",
+      "dateRanges": [
+        "Sep 1-30"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 16,
+          "preferred": 19
+        },
+        "oneBedroom": {
+          "standard": 27
+        },
+        "twoBedroom": {
+          "standard": 120,
+          "preferred": 143
+        },
+        "threeBedroom": 174
+      }
+    },
+    {
+      "name": "January & Early May",
+      "dateRanges": [
+        "Jan 1-31",
+        "May 1-14"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 17,
+          "preferred": 21
+        },
+        "oneBedroom": {
+          "standard": 29
+        },
+        "twoBedroom": {
+          "standard": 125,
+          "preferred": 153
+        },
+        "threeBedroom": 183
+      }
+    },
+    {
+      "name": "Late May & Early December",
+      "dateRanges": [
+        "May 15-Jun 10",
+        "Dec 1-23"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 18,
+          "preferred": 21
+        },
+        "oneBedroom": {
+          "standard": 31
+        },
+        "twoBedroom": {
+          "standard": 132,
+          "preferred": 157
+        },
+        "threeBedroom": 192
+      }
+    },
+    {
+      "name": "February & Summer",
+      "dateRanges": [
+        "Feb 1-15",
+        "Jun 11-Aug 31"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 18,
+          "preferred": 22
+        },
+        "oneBedroom": {
+          "standard": 32
+        },
+        "twoBedroom": {
+          "standard": 132,
+          "preferred": 164
+        },
+        "threeBedroom": 204
+      }
+    },
+    {
+      "name": "Fall",
+      "dateRanges": [
+        "Oct 1-Nov 23",
+        "Nov 27-30"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 22,
+          "preferred": 26
+        },
+        "oneBedroom": {
+          "standard": 36
+        },
+        "twoBedroom": {
+          "standard": 158,
+          "preferred": 188
+        },
+        "threeBedroom": 232
+      }
+    },
+    {
+      "name": "Spring Break / Thanksgiving",
+      "dateRanges": [
+        "Feb 16-Mar 20",
+        "Mar 29-Apr 30",
+        "Nov 24-26"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 24,
+          "preferred": 27
+        },
+        "oneBedroom": {
+          "standard": 41
+        },
+        "twoBedroom": {
+          "standard": 172,
+          "preferred": 199
+        },
+        "threeBedroom": 252
+      }
+    },
+    {
+      "name": "Highest Demand",
+      "dateRanges": [
+        "Mar 21-28",
+        "Dec 24-31"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 32,
+          "preferred": 38
+        },
+        "oneBedroom": {
+          "standard": 54
+        },
+        "twoBedroom": {
+          "standard": 234,
+          "preferred": 278
+        },
+        "threeBedroom": 343
+      }
+    }
+  ]
+}

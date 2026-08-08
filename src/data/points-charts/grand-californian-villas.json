@@ -1,0 +1,88 @@
+{
+  "resort": "Grand Californian Villas",
+  "tier": "deluxe",
+  "source": "https://dvctripplanner.com/resort/the-villas-at-disneys-grand-californian-hotel-and-spa",
+  "fetchedAt": "2026-08-08",
+  "note": "Points required per night (Disneyland-specific calendar). Source gave Sun-Thu/Fri-Sat pairs, no weekly total - nightly average computed as (5*SunThu + 2*FriSat)/7. Only one view category shown (mapped to 'standard').",
+  "seasons": [
+    {
+      "name": "Value",
+      "dateRanges": [
+        "Jan 3-Feb 27",
+        "Sep 5-30"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 18.43
+        },
+        "oneBedroom": {
+          "standard": 33.57
+        },
+        "twoBedroom": {
+          "standard": 48.86
+        },
+        "threeBedroom": 101.14
+      }
+    },
+    {
+      "name": "Regular",
+      "dateRanges": [
+        "Apr 4-Jun 27",
+        "Oct 1-Nov 22",
+        "Nov 28-Dec 16"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 21.14
+        },
+        "oneBedroom": {
+          "standard": 41.57
+        },
+        "twoBedroom": {
+          "standard": 55.71
+        },
+        "threeBedroom": 113.71
+      }
+    },
+    {
+      "name": "Peak",
+      "dateRanges": [
+        "Feb 28-Mar 18",
+        "Jun 28-Sep 4"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 27.71
+        },
+        "oneBedroom": {
+          "standard": 55.43
+        },
+        "twoBedroom": {
+          "standard": 75.14
+        },
+        "threeBedroom": 162.29
+      }
+    },
+    {
+      "name": "Holiday",
+      "dateRanges": [
+        "Jan 1-2",
+        "Mar 19-Apr 3",
+        "Nov 23-27",
+        "Dec 17-31"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 32.0
+        },
+        "oneBedroom": {
+          "standard": 66.0
+        },
+        "twoBedroom": {
+          "standard": 92.29
+        },
+        "threeBedroom": 194.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "resort": "Boulder Ridge Villas",
+  "tier": "deluxe",
+  "source": "https://dvctripplanner.com/resort/boulder-ridge-villas-at-disneys-wilderness-lodge",
+  "fetchedAt": "2026-08-08",
+  "note": "Points required per night. Source chart splits by day-of-week (Sun-Thu vs Fri-Sat) - values below are each season's published 7-night weekly total divided by 7, a nightly average, not the real per-night figure (cheaper weeknights, pricier Fri/Sat). Only one view category shown in the source (mapped to 'standard'). No 3-bedroom/grand villa at this resort.",
+  "seasons": [
+    {
+      "name": "September",
+      "dateRanges": [
+        "Sep 1-30"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 13.86
+        },
+        "oneBedroom": {
+          "standard": 28.14
+        },
+        "twoBedroom": {
+          "standard": 37.43
+        }
+      }
+    },
+    {
+      "name": "January & Early May",
+      "dateRanges": [
+        "Jan 1-31",
+        "May 1-14"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 15.29
+        },
+        "oneBedroom": {
+          "standard": 31.14
+        },
+        "twoBedroom": {
+          "standard": 39.71
+        }
+      }
+    },
+    {
+      "name": "Late May & Early December",
+      "dateRanges": [
+        "May 15-Jun 10",
+        "Dec 1-23"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 16.29
+        },
+        "oneBedroom": {
+          "standard": 33.14
+        },
+        "twoBedroom": {
+          "standard": 42.71
+        }
+      }
+    },
+    {
+      "name": "February & Summer",
+      "dateRanges": [
+        "Feb 1-15",
+        "Jun 11-Aug 31"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 16.57
+        },
+        "oneBedroom": {
+          "standard": 35.43
+        },
+        "twoBedroom": {
+          "standard": 45.14
+        }
+      }
+    },
+    {
+      "name": "Fall",
+      "dateRanges": [
+        "Oct 1-Nov 23",
+        "Nov 27-30"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 17.86
+        },
+        "oneBedroom": {
+          "standard": 36.43
+        },
+        "twoBedroom": {
+          "standard": 47.43
+        }
+      }
+    },
+    {
+      "name": "Spring Break / Thanksgiving",
+      "dateRanges": [
+        "Feb 16-Mar 20",
+        "Mar 29-Apr 30",
+        "Nov 24-26"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 19.57
+        },
+        "oneBedroom": {
+          "standard": 38.43
+        },
+        "twoBedroom": {
+          "standard": 50.43
+        }
+      }
+    },
+    {
+      "name": "Highest Demand",
+      "dateRanges": [
+        "Mar 21-28",
+        "Dec 24-31"
+      ],
+      "pointsPerNight": {
+        "studio": {
+          "standard": 26.57
+        },
+        "oneBedroom": {
+          "standard": 49.29
+        },
+        "twoBedroom": {
+          "standard": 66.29
+        }
+      }
+    }
+  ]
+}
