@@ -1,8 +1,8 @@
 import { useState } from "react";
-import type { RoomType, ViewType } from "../lib/types";
+import type { PointsChart, RoomType, ViewType } from "../lib/types";
 import { calculateDvcTripCost, findSeasonForDate, ROOM_TYPE_LABELS } from "../lib/calculations";
 import { pointsCharts, dues, schoolHolidayData, transportToParks } from "../lib/data";
-import { directPriceForResort, isResaleRestricted, nightsAvailableInWindow, resalePriceMidpointForResort } from "../lib/resortHelpers";
+import { directPriceForResort, isResaleRestricted, resalePriceMidpointForResort } from "../lib/resortHelpers";
 import { ALL_DESTINATIONS } from "../lib/parks";
 
 interface TransportInfo {
@@ -12,20 +12,27 @@ interface TransportInfo {
 }
 
 const DEFAULT_WINDOW = "Summer holidays 2026";
+const WEEKLY_REFERENCE_NIGHTS = 7;
 
-export function CompareResorts() {
-  const [holidayWindowName, setHolidayWindowName] = useState(DEFAULT_WINDOW);
-  const [roomType, setRoomType] = useState<RoomType>("studio");
-  const [view, setView] = useState<ViewType>("standard");
-
-  const activeWindow = schoolHolidayData.holidayWindows.find((w) => w.name === holidayWindowName);
-  const nights = nightsAvailableInWindow(holidayWindowName);
-
-  const pointsRows = pointsCharts.map((chart) => {
-    const seasonName = activeWindow ? findSeasonForDate(chart, activeWindow.start) : null;
-    if (!seasonName) {
-      return { resort: chart.resort, region: chart.region, seasonName: null, pointsPerNight: null, totalPoints: null };
-    }
+/** A holiday window can span more than one of a resort's points-chart
+ * seasons (e.g. "Summer holidays 2026" runs into September, which is Low
+ * Season at some resorts) - walking every day in the window and collecting
+ * each day's points/night, rather than matching only the window's start
+ * date, is what actually captures that range instead of hiding it behind
+ * one single (and sometimes unrepresentative) season. */
+function pointsStatsForWindow(
+  chart: PointsChart,
+  roomType: RoomType,
+  view: ViewType,
+  startIso: string,
+  endIso: string,
+): { min: number; max: number; average: number } | null {
+  const start = new Date(`${startIso}T00:00:00Z`);
+  const end = new Date(`${endIso}T00:00:00Z`);
+  const values: number[] = [];
+  for (let d = new Date(start); d <= end; d.setUTCDate(d.getUTCDate() + 1)) {
+    const seasonName = findSeasonForDate(chart, d.toISOString().slice(0, 10));
+    if (!seasonName) continue;
     try {
       const result = calculateDvcTripCost({
         chart,
@@ -37,23 +44,39 @@ export function CompareResorts() {
         purchasePricePerPoint: 0,
         amortizationYears: 1,
       });
-      return {
-        resort: chart.resort,
-        region: chart.region,
-        seasonName,
-        pointsPerNight: result.pointsPerNight,
-        totalPoints: result.pointsPerNight * nights,
-      };
+      values.push(result.pointsPerNight);
     } catch {
-      return { resort: chart.resort, region: chart.region, seasonName, pointsPerNight: null, totalPoints: null };
+      // room type/view not available at this resort - skip this day
     }
-  });
+  }
+  if (values.length === 0) return null;
+  return {
+    min: Math.min(...values),
+    max: Math.max(...values),
+    average: values.reduce((a, b) => a + b, 0) / values.length,
+  };
+}
+
+export function CompareResorts() {
+  const [holidayWindowName, setHolidayWindowName] = useState(DEFAULT_WINDOW);
+  const [roomType, setRoomType] = useState<RoomType>("studio");
+  const [view, setView] = useState<ViewType>("standard");
+
+  const activeWindow = schoolHolidayData.holidayWindows.find((w) => w.name === holidayWindowName);
+
+  const pointsRows = pointsCharts.map((chart) => ({
+    resort: chart.resort,
+    region: chart.region,
+    stats: activeWindow
+      ? pointsStatsForWindow(chart, roomType, view, activeWindow.start, activeWindow.end)
+      : null,
+  }));
 
   const sortedPointsRows = [...pointsRows].sort((a, b) => {
-    if (a.pointsPerNight === null && b.pointsPerNight === null) return 0;
-    if (a.pointsPerNight === null) return 1;
-    if (b.pointsPerNight === null) return -1;
-    return a.pointsPerNight - b.pointsPerNight;
+    if (a.stats === null && b.stats === null) return 0;
+    if (a.stats === null) return 1;
+    if (b.stats === null) return -1;
+    return a.stats.average - b.stats.average;
   });
 
   const priceRows = pointsCharts.map((chart) => ({
@@ -73,9 +96,11 @@ export function CompareResorts() {
           {activeWindow
             ? `${activeWindow.name} (${activeWindow.start} to ${activeWindow.end})`
             : "Pick a holiday window"}{" "}
-          - each resort's own points season is auto-matched against the window's start date (same logic the Trip
-          Planner tab uses), so a resort with no season covering these dates shows "—" rather than a guess. Sorted
-          cheapest first.
+          - range and average are computed across every day in that window, not just its start date, since a window
+          can span more than one points season at a resort (this window's real length varies by term dates - some
+          windows are a week, some are the whole summer). A resort with no season data covering any day in the
+          window, or where this room type/view isn't available, shows "—" rather than a guess. Sorted cheapest first
+          by average.
         </p>
         <div className="chip-row">
           <label className="filter-label">
@@ -112,9 +137,9 @@ export function CompareResorts() {
               <tr>
                 <th>Resort</th>
                 <th>Region</th>
-                <th>Season matched</th>
-                <th className="num">Points/night</th>
-                <th className="num">Points for {nights} nights</th>
+                <th className="num">Points/night (range)</th>
+                <th className="num">Points/night (avg)</th>
+                <th className="num">Points for {WEEKLY_REFERENCE_NIGHTS} nights (avg)</th>
               </tr>
             </thead>
             <tbody>
@@ -122,18 +147,27 @@ export function CompareResorts() {
                 <tr key={r.resort}>
                   <td>{r.resort}</td>
                   <td>{r.region}</td>
-                  <td>{r.seasonName ?? "—"}</td>
-                  <td className="num">{r.pointsPerNight !== null ? r.pointsPerNight.toFixed(1) : "—"}</td>
-                  <td className="num">{r.totalPoints !== null ? Math.round(r.totalPoints) : "—"}</td>
+                  <td className="num">
+                    {r.stats
+                      ? r.stats.min === r.stats.max
+                        ? r.stats.min.toFixed(1)
+                        : `${r.stats.min.toFixed(1)}–${r.stats.max.toFixed(1)}`
+                      : "—"}
+                  </td>
+                  <td className="num">{r.stats ? r.stats.average.toFixed(1) : "—"}</td>
+                  <td className="num">
+                    {r.stats ? Math.round(r.stats.average * WEEKLY_REFERENCE_NIGHTS) : "—"}
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
         <p className="field-hint">
-          "—" means this room type/view isn't available at that resort in the matched season (see that resort's own
-          `note` in DATA_SOURCES.md for known extraction gaps), or no season in its chart covers the window's start
-          date.
+          "—" means this room type/view isn't available at that resort (see that resort's own `note` in
+          DATA_SOURCES.md for known extraction gaps), or no season in its chart covers any day in the window. The
+          range column only shows two figures when the window crosses a season boundary at that resort - a single
+          number means the whole window falls in one season there.
         </p>
       </div>
 
