@@ -1,18 +1,9 @@
 import { pointsCharts, transportToParks } from "../lib/data";
+import { ALL_DESTINATIONS } from "../lib/parks";
 
 interface Props {
   resortIndex: number;
 }
-
-const ALL_DESTINATIONS = [
-  "Magic Kingdom",
-  "EPCOT",
-  "Hollywood Studios",
-  "Animal Kingdom",
-  "Disney Springs",
-  "Disneyland Park",
-  "Disney California Adventure",
-];
 
 export function Transport({ resortIndex }: Props) {
   const chart = pointsCharts[resortIndex];

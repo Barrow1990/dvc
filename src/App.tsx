@@ -6,7 +6,14 @@ import { TripComparison } from "./components/TripComparison";
 import { BreakEvenChart } from "./components/BreakEvenChart";
 import { HolidayCalendar } from "./components/HolidayCalendar";
 import { Transport } from "./components/Transport";
+import { CompareResorts } from "./components/CompareResorts";
 import { dues, directPrices, fxRate, pointsCharts } from "./lib/data";
+
+const TABS = [
+  { id: "planner", label: "Trip planner" },
+  { id: "compare", label: "Compare resorts" },
+] as const;
+type TabId = (typeof TABS)[number]["id"];
 
 const DEFAULT_RESORT = "Saratoga Springs";
 
@@ -31,6 +38,7 @@ const defaultState: AssumptionsState = {
 
 function App() {
   const [state, setState] = useState<AssumptionsState>(defaultState);
+  const [tab, setTab] = useState<TabId>("planner");
   const [theme, setTheme] = useState<"light" | "dark">(() =>
     window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light",
   );
@@ -62,19 +70,40 @@ function App() {
         </button>
       </header>
 
-      <div className="shell">
-        <aside className="sidebar">
-          <Assumptions state={state} onChange={setState} />
-        </aside>
+      <nav className="tab-bar" role="tablist">
+        {TABS.map((t) => (
+          <button
+            key={t.id}
+            type="button"
+            role="tab"
+            aria-selected={tab === t.id}
+            className={tab === t.id ? "tab active" : "tab"}
+            onClick={() => setTab(t.id)}
+          >
+            {t.label}
+          </button>
+        ))}
+      </nav>
 
-        <div className="results">
-          <StatTiles state={state} />
-          <TripComparison state={state} />
-          <BreakEvenChart state={state} years={20} />
-          <Transport resortIndex={state.resortIndex} />
-          <HolidayCalendar />
+      {tab === "planner" ? (
+        <div className="shell">
+          <aside className="sidebar">
+            <Assumptions state={state} onChange={setState} />
+          </aside>
+
+          <div className="results">
+            <StatTiles state={state} />
+            <TripComparison state={state} />
+            <BreakEvenChart state={state} years={20} />
+            <Transport resortIndex={state.resortIndex} />
+            <HolidayCalendar />
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="results compare-results">
+          <CompareResorts />
+        </div>
+      )}
     </div>
   );
 }

@@ -31,6 +31,12 @@ directly as your thinking (or the real numbers) change.
 - **Transport to the parks** — real mode(s) (monorail/Skyliner/boat/
   walking/bus) from every resort to every park it can reach, shown per
   resort - informational, not part of any cost calculation
+- **Cross-resort comparison tables** — a separate "Compare resorts" tab
+  with all 17 resorts side by side: points/night for a chosen holiday
+  window + room type (sorted cheapest first), transport to every park,
+  and dues/direct-price/resale-price/resale-restriction per resort - for
+  "which resort" questions the single-scenario Trip Planner tab can't
+  answer directly
 
 ## Known simplifications in what IS modeled
 

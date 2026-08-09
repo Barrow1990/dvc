@@ -3,12 +3,11 @@ import {
   pointsCharts,
   packageHolidays,
   fxRate,
-  directPrices,
-  resalePrices,
   directVsResalePerks,
   schoolHolidayData,
 } from "../lib/data";
 import { findSeasonForDate, ROOM_TYPE_LABELS } from "../lib/calculations";
+import { directPriceForResort, isResaleRestricted, nightsAvailableInWindow, resalePriceMidpointForResort } from "../lib/resortHelpers";
 
 export interface AssumptionsState {
   resortIndex: number;
@@ -40,49 +39,12 @@ interface Props {
 // which is a real, useful distinction (different parks, different flights).
 const REGION_ORDER = ["Walt Disney World", "Disneyland Resort", "Aulani (Hawaii)", "East Coast"] as const;
 
-/** Resale prices are only tracked per resort-tier, not every individual
- * resort - falls back to the blended market average when a specific
- * resort (e.g. Animal Kingdom Villas) isn't in that breakdown. Tier keys
- * like "Grand Floridian / Polynesian (premium)" bundle several resort
- * names together, so this checks whether the resort name contains any
- * of the tier key's slash-separated short names, not just an exact
- * substring match of the whole resort name against the whole tier key. */
-function resalePriceMidpointForResort(resort: string): number {
-  const tierKey = Object.keys(resalePrices.rangesPerPointByResortTier).find((k) => {
-    const shortNames = k
-      .replace(/\(.*\)/, "")
-      .split("/")
-      .map((s) => s.trim());
-    return shortNames.some((name) => resort.includes(name));
-  }) as keyof typeof resalePrices.rangesPerPointByResortTier | undefined;
-  if (tierKey) {
-    const r = resalePrices.rangesPerPointByResortTier[tierKey];
-    return (r.low + r.high) / 2;
-  }
-  return resalePrices.blendedAveragePerPoint;
-}
-
-function directPriceForResort(resort: string): number {
-  const specific = (directPrices.perPointByResort as Record<string, number>)[resort];
-  if (specific !== undefined) return specific;
-  return (directPrices.generalRange.low + directPrices.generalRange.high) / 2;
-}
-
-function nightsAvailableInWindow(windowName: string): number {
-  const w = schoolHolidayData.holidayWindows.find((h) => h.name === windowName);
-  if (!w) return 0;
-  const ms = new Date(`${w.end}T00:00:00Z`).getTime() - new Date(`${w.start}T00:00:00Z`).getTime();
-  return Math.round(ms / (1000 * 60 * 60 * 24));
-}
-
 export function Assumptions({ state, onChange }: Props) {
   const chart = pointsCharts[state.resortIndex];
   const availableRoomTypes = Object.keys(
     chart.seasons[0].pointsPerNight,
   ) as RoomType[];
-  const isRestrictedResort = (
-    directVsResalePerks.resaleRestrictedResorts.resorts as string[]
-  ).includes(chart.resort);
+  const isRestrictedResort = isResaleRestricted(chart.resort);
 
   function set<K extends keyof AssumptionsState>(key: K, value: AssumptionsState[K]) {
     onChange({ ...state, [key]: value });

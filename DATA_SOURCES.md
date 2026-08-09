@@ -113,6 +113,37 @@ a few real gaps and one real correction came out of it:
   regional calendars (Hawaii/Disneyland), not the standard Orlando date
   ranges every WDW deluxe resort in this dataset shares.
 
+## "Compare resorts" tab (added 2026-08-09)
+
+A second top-level tab, alongside the original single-scenario "Trip
+planner" - three reference tables spanning all 17 resorts at once, for
+"which resort is actually cheapest/closest" questions that the Trip
+Planner's one-resort-at-a-time view can't answer directly. No new data
+files - reuses everything already sourced above:
+
+- **Points per night, by resort** - own holiday-window + room-type +
+  view filter, same `findSeasonForDate` auto-match the Trip Planner uses.
+  A resort shows "—" if its chart has no season covering the window's
+  start date, or if that specific room type/view isn't available there
+  (see "Points chart data quality" above for which resorts have gaps) -
+  never a guessed number.
+- **Transport to the parks, by resort** - the same `transport-to-parks.json`
+  data `Transport.tsx` already showed for one resort at a time, now as a
+  full resort × park grid.
+- **Ownership cost per point, by resort** - dues, direct price, and
+  resale price (approx) side by side, plus a resale-restriction flag.
+
+**Real bug fixed while building this (2026-08-09):** the resale-
+restriction check (`isRestrictedResort` in `Assumptions.tsx`, now
+`isResaleRestricted` in `src/lib/resortHelpers.ts`) compared
+`chart.resort` ("Disneyland Hotel Villas") against
+`direct-vs-resale-perks-2026.json`'s list entry ("Villas at Disneyland
+Hotel") using exact string equality - different word order meant this
+resort was silently never flagged as resale-restricted anywhere in the
+app, even though it's one of only three. Fixed with a word-set
+comparison instead of exact match; Riviera Resort and Cabins at Fort
+Wilderness were unaffected (their list entries already matched exactly).
+
 ## Coverage gaps (v1 scope)
 
 - Contract expiration dates and closing costs are sourced for Polynesian

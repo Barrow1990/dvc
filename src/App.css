@@ -34,11 +34,48 @@
   border-color: var(--series-dvc);
 }
 
+.tab-bar {
+  display: flex;
+  gap: 0.4rem;
+  max-width: 1280px;
+  margin: 1.25rem auto 0;
+  padding: 0 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.tab {
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.6rem 0.9rem;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  margin-bottom: -1px;
+}
+
+.tab:hover {
+  color: var(--text-primary);
+}
+
+.tab.active {
+  color: var(--text-primary);
+  border-bottom-color: var(--series-dvc);
+}
+
 .shell {
   display: grid;
   grid-template-columns: 320px 1fr;
   align-items: start;
   gap: 1.5rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.compare-results {
   max-width: 1280px;
   margin: 0 auto;
   padding: 1.5rem;
@@ -176,6 +213,25 @@
   color: var(--series-dvc);
 }
 
+.filter-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.filter-label select {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface-page);
+  color: var(--text-primary);
+}
+
 /* ---------- KPI stat tiles ---------- */
 
 .kpi-row {
@@ -223,6 +279,10 @@
 }
 
 /* ---------- Tables ---------- */
+
+.table-scroll {
+  overflow-x: auto;
+}
 
 table {
   width: 100%;
