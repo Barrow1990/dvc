@@ -135,6 +135,23 @@
   color: var(--status-critical);
 }
 
+.callout-warning {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  background: color-mix(in srgb, var(--status-warning) 15%, var(--surface-card));
+  border: 1px solid var(--status-warning);
+  border-radius: 8px;
+  padding: 0.65rem 0.8rem;
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  margin-top: 0.9rem;
+}
+
+.callout-warning .icon {
+  flex-shrink: 0;
+}
+
 /* ---------- Fieldset groups (Assumptions) ---------- */
 
 .fieldset {

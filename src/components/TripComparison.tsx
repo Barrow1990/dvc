@@ -146,6 +146,16 @@ export function TripComparison({ state }: Props) {
           </table>
         )
       )}
+      <p className="callout-warning">
+        <span className="icon" aria-hidden="true">
+          ⚠
+        </span>
+        <span>
+          UK package total is a blog-aggregator estimate, not a live booking-engine quote, and likely understates
+          the real price - confirmed at least £2,000 low against a real quote for a comparable trip (2026-08-09).
+          See DATA_SOURCES.md's "Package pricing caveat".
+        </span>
+      </p>
     </div>
   );
 }

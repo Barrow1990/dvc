@@ -85,25 +85,39 @@ export function StatTiles({ state }: Props) {
   const delta = dvcTotalGbp !== null ? packageTotalGbp - dvcTotalGbp : null;
 
   return (
-    <div className="kpi-row">
-      <div className="stat-tile">
-        <div className="stat-label">DVC, this trip</div>
-        <div className="stat-value series-dvc">{dvcTotalGbp !== null ? gbp(dvcTotalGbp) : "—"}</div>
-      </div>
-      <div className="stat-tile">
-        <div className="stat-label">Package, this trip</div>
-        <div className="stat-value series-package">{gbp(packageTotalGbp)}</div>
-      </div>
-      <div className="stat-tile">
-        <div className="stat-label">{delta !== null && delta >= 0 ? "DVC saves" : "Package saves"}</div>
-        <div className="stat-value">{delta !== null ? gbp(Math.abs(delta)) : "—"}</div>
-      </div>
-      <div className="stat-tile">
-        <div className="stat-label">Break-even (30yr horizon)</div>
-        <div className="stat-value">
-          {breakEvenYear === null ? "Never" : breakEvenYear === undefined ? "—" : `Year ${breakEvenYear}`}
+    <>
+      <div className="kpi-row">
+        <div className="stat-tile">
+          <div className="stat-label">DVC, this trip</div>
+          <div className="stat-value series-dvc">{dvcTotalGbp !== null ? gbp(dvcTotalGbp) : "—"}</div>
+        </div>
+        <div className="stat-tile">
+          <div className="stat-label">Package, this trip</div>
+          <div className="stat-value series-package">{gbp(packageTotalGbp)}</div>
+        </div>
+        <div className="stat-tile">
+          <div className="stat-label">{delta !== null && delta >= 0 ? "DVC saves" : "Package saves"}</div>
+          <div className="stat-value">{delta !== null ? gbp(Math.abs(delta)) : "—"}</div>
+        </div>
+        <div className="stat-tile">
+          <div className="stat-label">Break-even (30yr horizon)</div>
+          <div className="stat-value">
+            {breakEvenYear === null ? "Never" : breakEvenYear === undefined ? "—" : `Year ${breakEvenYear}`}
+          </div>
         </div>
       </div>
-    </div>
+      <p className="callout-warning">
+        <span className="icon" aria-hidden="true">
+          ⚠
+        </span>
+        <span>
+          <strong>Package price is likely understated.</strong> It's a blog-aggregator "typical price", not a live
+          quote, and scales linearly from a 14-night figure - real per-week cost doesn't halve that cleanly since
+          flights are a fixed cost within it. Confirmed 2026-08-09: real quotes have run at least £2,000 higher than
+          this figure for a comparable trip. Treat "Package, this trip" and the break-even year above as optimistic
+          for DVC until you get a real operator quote - see DATA_SOURCES.md.
+        </span>
+      </p>
+    </>
   );
 }

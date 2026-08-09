@@ -48,6 +48,36 @@ swing (not a second independent package-price source). Treat the result
 as a rough approximation - get an actual live quote from a UK tour
 operator before trusting this for a real booking decision.
 
+**Confirmed low (2026-08-09):** the user reports real quotes running at
+least £2,000 higher than what the app calculates for a comparable trip.
+Searched for a better live source and found none - every result traced
+back to the same blog aggregators already cited above; getting an actual
+per-date booking-engine quote would need a real browser session against
+a live tour-operator site, which isn't available in this environment.
+Two real contributing factors were found instead, neither fixed yet (the
+user asked to flag rather than guess a replacement number):
+
+1. `package-holidays-2026.json` already contains a second, independently
+   -sourced figure that was never wired into any calculation -
+   `weeklyBudgetRuleOfThumbGbp` (£6,000-8,000 for 7 nights). That's much
+   closer to the user's real-world report than the ~£4,000-4,300/week the
+   calculator currently produces for a similar scenario (2 adults + 1
+   child, Moderate resort, peak).
+2. The calculation scales the sourced *14-night* per-person price
+   linearly by trip length to get a shorter trip's price. Flights are a
+   fixed cost baked into that 14-night total - they don't halve when the
+   stay halves - so this systematically understates anything shorter
+   than 14 nights, independent of whether the base figure itself is
+   accurate.
+
+A visible in-app warning (`.callout-warning` next to every package price,
+in both `StatTiles.tsx` and `TripComparison.tsx`) now flags this
+directly rather than leaving it buried in this file's `note` field where
+nobody using the app would see it. The underlying formula/figures are
+unchanged - fixing them properly needs either a real reference quote
+(operator, dates, resort, party size, price) or a decision on how to
+reconcile the two already-sourced figures, not more blog searching.
+
 ## DVC resorts are not "Value/Moderate/Deluxe" (fixed 2026-08-09)
 
 Every DVC resort is Disney's own **"Deluxe Villas"** category - Value/
