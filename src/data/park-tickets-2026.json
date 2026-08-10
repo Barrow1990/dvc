@@ -1,7 +1,7 @@
 {
   "source": "https://mickeyfromthe.uk/news/walt-disney-world-2026-disney-magic-ticket-prices-revealed, https://www.floridatix.com/disney-world/disneys-14-day-magic-ticket",
   "fetchedAt": "2026-08-07",
-  "note": "Disney's 14-Day Magic Ticket - UK-exclusive, only available to UK residents, buyable standalone (not just bundled in a package) so this applies to the DVC-ownership scenario too, not just package holidays. Includes all 4 theme parks + park hopping + both water parks + Memory Maker. GBP per person. Same low/regular/peak tiers as flights-2026.json, but priced independently by Disney - not assumed to line up on the same calendar dates.",
+  "note": "Disney's 14-Day Magic Ticket - UK-exclusive, only available to UK residents, buyable standalone (not just bundled in a package) so this applies to the DVC-ownership scenario too, not just package holidays. Includes all 4 theme parks + park hopping + both water parks + Memory Maker. GBP per person. Same low/regular/peak tiers as flights-2026.json, but priced independently by Disney - not assumed to line up on the same calendar dates. CORROBORATED (2026-08-10): search-indexed snapshots of virginatlantic.com/holidays (direct page fetch is blocked - see DATA_SOURCES.md) show a real per-person ticket price of £633, essentially matching this file's regular-tier £631 adult price, and a 'from £38/person/day' headline matching this file's low-tier £546/14 = £39/day - independent real-world confirmation this ticket data is accurate.",
   "fourteenDayMagicTicketGbp": {
     "adult": { "low": 546, "regular": 631, "peak": 738 },
     "child": { "low": 519, "regular": 599, "peak": 701 }

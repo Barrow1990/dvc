@@ -78,6 +78,73 @@ unchanged - fixing them properly needs either a real reference quote
 (operator, dates, resort, party size, price) or a decision on how to
 reconcile the two already-sourced figures, not more blog searching.
 
+### Virgin Atlantic retrieval attempt + analytics (2026-08-10)
+
+At the user's request, tried to pull real package pricing directly from
+`virginatlantic.com/holidays` (Virgin Atlantic Holidays sells Disney
+World packages under that brand, having absorbed Virgin Holidays).
+**Blocked** - both a direct fetch and a plain `curl` with a real
+browser user-agent got HTTP 444 (a deliberate silent-connection-drop
+response, the same signature Disney's own booking site returned earlier
+in this project), and `robots.txt` came back empty. A search-engine-
+indexed snapshot of one page also shows the real pricing is loaded
+client-side after page load (literal "Loading special offers"
+placeholder text in the static HTML), so even without the block, a
+plain scrape wouldn't find real numbers - it needs a real browser
+session picking specific dates. Did not attempt to bypass the block,
+consistent with how the Disney site situation was handled.
+
+**What search-engine indexing did surface** (real fragments, not full
+page content, each with a source URL):
+- A real per-person Disney ticket price of **£633** (indexed
+  2026-08-10) - within £2 of `park-tickets-2026.json`'s **regular**-tier
+  14-Day Magic Ticket adult price (£631). Independent corroboration this
+  file's ticket data is accurate - added to that file's `note`.
+- "Disney park tickets start from **£38 per person per day**" - matches
+  `park-tickets-2026.json`'s low-tier £546 ÷ 14 = £39/day almost exactly.
+- Moderate/Deluxe/Deluxe Villa resorts get a **20%** room-rate discount
+  22 Feb-19 Jul 2026, rising to **25%** for 20 Jul-30 Sep and 15 Nov-8
+  Dec 2026 - directionally interesting (bigger % discount at peak
+  doesn't necessarily mean a lower net price, since peak rack rates
+  start higher - not something this app's data can resolve without a
+  real base rate) but not a usable comparable total price.
+- "Orlando holidays... start from £779 per person for 2026" - an
+  unusable headline teaser figure with unknown nights/resort
+  tier/inclusions (likely a short off-peak Value stay, possibly without
+  park tickets) - not comparable to `perPersonGbp14Nights` without
+  knowing what it actually includes.
+
+**Analytics: quantifying the linear-scaling bug's real contribution.**
+Using only figures already sourced in this app (no new invented
+numbers), for the default scenario (Moderate resort, peak demand tier,
+7 nights, 2 adults + 1 child):
+
+| | Current (linear-scaled) | If flights were held fixed instead* |
+|---|---|---|
+| Value | £3,373-3,938 (mid £3,655) | £3,936-6,188 (mid £5,062) |
+| Moderate | £4,031-4,312 (mid £4,172) | £4,594-6,562 (mid £5,578) |
+| Deluxe | £4,500-5,062 (mid £4,781) | £5,062-7,312 (mid £6,188) |
+
+\* Illustrative only: subtracts `flights-2026.json`'s peak per-person
+flight cost (£750-1,125) from the 14-night per-person package figure,
+scales only the remainder (hotel+tickets) by nights/14, then adds the
+full unscaled flight cost back - i.e. flights no longer incorrectly
+halve for a 7-night trip. This assumes the sourced flight range is a
+reasonable proxy for the flight portion embedded in the blog
+aggregators' bundled figure, which isn't verified (they don't publish a
+component breakdown).
+
+For Moderate at peak, this alone accounts for **~£1,400** of the
+reported gap (£4,172 → £5,578 mid) - a real, quantifiable chunk, but
+not the full "at least £2,000" the user reported, and still below this
+file's own `weeklyBudgetRuleOfThumbGbp` (£6,000-8,000/week) for a
+comparable trip. Most likely explanation: **both** identified issues are
+real and compounding - the linear-scaling bug understates shorter trips
+structurally, and the base 14-night blog-aggregate figure may itself run
+low independent of that. Numbers are still unchanged pending a decision
+on whether to apply the illustrative fix above, get a real reference
+quote, or both.
+
 ## DVC resorts are not "Value/Moderate/Deluxe" (fixed 2026-08-09)
 
 Every DVC resort is Disney's own **"Deluxe Villas"** category - Value/
